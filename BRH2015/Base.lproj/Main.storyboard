@@ -49,22 +49,33 @@
                                     <segue destination="6VM-Iq-4wa" kind="show" id="jvX-K9-nDh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMy-IH-D0V">
+                                <rect key="frame" x="398" y="500" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BzN-PD-7l6" kind="show" id="VtZ-a6-Cjp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="TqU-vX-MKr" secondAttribute="trailing" constant="190" id="DKY-oe-dsU"/>
                             <constraint firstItem="TqU-vX-MKr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="51" id="Dzv-Lo-ycL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sMy-IH-D0V" secondAttribute="bottom" constant="10" id="ODD-1d-EkM"/>
+                            <constraint firstAttribute="centerX" secondItem="sMy-IH-D0V" secondAttribute="centerX" id="PFD-qC-dyq"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Event Table View Controller-->
         <scene sceneID="FDI-mX-ehT">
             <objects>
-                <viewController id="BzN-PD-7l6" sceneMemberID="viewController">
+                <viewController id="BzN-PD-7l6" customClass="EventTableViewController" customModule="BRH2015" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TPh-CS-oCt"/>
                         <viewControllerLayoutGuide type="bottom" id="zGM-hT-Kcz"/>
@@ -78,7 +89,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="106" id="upF-fm-nc3">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="106" id="upF-fm-nc3" customClass="EventTableViewCell" customModule="BRH2015" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="upF-fm-nc3" id="5to-1m-xny">
@@ -112,14 +123,20 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hmn-AD-Uno">
-                                                    <rect key="frame" x="70" y="8" width="1" height="90"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hmn-AD-Uno">
+                                                    <rect key="frame" x="70" y="8" width="1" height="89"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.062745098040000002" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="R06-Aa-quP"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="It2-t8-QbO">
+                                                    <rect key="frame" x="529" y="26" width="53" height="53"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="It2-t8-QbO" secondAttribute="height" multiplier="1:1" id="fbS-Kj-q4f"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -136,7 +153,10 @@
                                                 <constraint firstItem="sC5-EM-HHb" firstAttribute="leading" secondItem="Hmn-AD-Uno" secondAttribute="trailing" constant="10" id="FTv-mY-aTY"/>
                                                 <constraint firstItem="sC5-EM-HHb" firstAttribute="top" secondItem="drX-ud-ECj" secondAttribute="bottom" constant="5" id="KYn-DB-ogW"/>
                                                 <constraint firstItem="drX-ud-ECj" firstAttribute="leading" secondItem="Hmn-AD-Uno" secondAttribute="trailing" constant="10" id="UDg-NO-Xbz"/>
+                                                <constraint firstItem="It2-t8-QbO" firstAttribute="height" secondItem="Hmn-AD-Uno" secondAttribute="height" multiplier="0.6" id="UXb-wq-bd4"/>
+                                                <constraint firstAttribute="centerY" secondItem="It2-t8-QbO" secondAttribute="centerY" id="VCW-K0-zf7"/>
                                                 <constraint firstItem="Xop-1f-a6S" firstAttribute="top" secondItem="5to-1m-xny" secondAttribute="topMargin" constant="10" id="Xpa-RU-YGU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="It2-t8-QbO" secondAttribute="trailing" constant="10" id="ZFk-kw-fpF"/>
                                                 <constraint firstItem="Xop-1f-a6S" firstAttribute="leading" secondItem="5to-1m-xny" secondAttribute="leadingMargin" constant="10" id="ZL1-vO-nAR"/>
                                                 <constraint firstItem="dmY-H5-uGU" firstAttribute="top" secondItem="Xop-1f-a6S" secondAttribute="bottom" constant="5" id="bdo-NN-NaN"/>
                                                 <constraint firstItem="drX-ud-ECj" firstAttribute="top" secondItem="5to-1m-xny" secondAttribute="topMargin" constant="10" id="ctg-BK-sGR"/>
@@ -163,13 +183,27 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="endLabel" destination="dmY-H5-uGU" id="B6I-BD-J9t"/>
+                                            <outlet property="locationLabel" destination="sC5-EM-HHb" id="bRy-p5-l1l"/>
+                                            <outlet property="startLabel" destination="Xop-1f-a6S" id="3NI-Wd-rC2"/>
+                                            <outlet property="titleLabel" destination="drX-ud-ECj" id="TUd-Y1-jlx"/>
+                                            <outlet property="uberImage" destination="It2-t8-QbO" id="38M-4Q-Kda"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BzN-PD-7l6" id="kC1-pN-yyh"/>
+                                    <outlet property="delegate" destination="BzN-PD-7l6" id="Ca4-du-gYb"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="eventTableView" destination="Y74-Ap-i2x" id="KNb-7S-Tky"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zb8-Si-v2r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

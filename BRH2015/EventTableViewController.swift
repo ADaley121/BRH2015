@@ -22,13 +22,13 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventTableView.delegate = self
-        eventTableView.dataSource = self
         
         startDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         startDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
+        startDateFormat.dateFormat = "hh:mm"
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
+        endDateFormat.dateFormat = "hh:mm"
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +44,8 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
                     return false
                 }
                 } as! [EKCalendar]
+            println(calendars)
+            println(filteredCalendars)
             if !calendars.isEmpty {
                 let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400).dateByAddingTimeInterval(-3600), calendars: calendars)
                 println("predicate: \(predicate)")
@@ -63,8 +65,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = EventTableViewCell()
+        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventTableViewCell
         let event = events[indexPath.row]
+        println(event)
         cell.titleLabel.text = event.title
         cell.locationLabel.text = event.location
         cell.startLabel.text = startDateFormat.stringFromDate(event.startDate)
@@ -72,8 +75,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         if event.calendar.title == "Uber" {
             cell.uberImage.image = uberLogo
         }
-        return UITableViewCell()
+        return cell
     }
-    
     
 }
