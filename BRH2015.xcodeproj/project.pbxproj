@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22380C221BACD63F0010C9E0 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22380C211BACD63F0010C9E0 /* EventTableViewController.swift */; };
+		22380C241BACD9D90010C9E0 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22380C231BACD9D90010C9E0 /* NewEventViewController.swift */; };
 		95561ED41BACF5D2007007F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95561ED31BACF5D2007007F2 /* AppDelegate.swift */; };
 		95561ED61BACF5D2007007F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95561ED51BACF5D2007007F2 /* ViewController.swift */; };
 		95561ED91BACF5D2007007F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95561ED71BACF5D2007007F2 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22380C211BACD63F0010C9E0 /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		22380C231BACD9D90010C9E0 /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		95561ECE1BACF5D2007007F2 /* BRH2015.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRH2015.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95561ED21BACF5D2007007F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95561ED31BACF5D2007007F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				95561EDA1BACF5D2007007F2 /* Images.xcassets */,
 				95561EDC1BACF5D2007007F2 /* LaunchScreen.xib */,
 				95561ED11BACF5D2007007F2 /* Supporting Files */,
+				22380C211BACD63F0010C9E0 /* EventTableViewController.swift */,
+				22380C231BACD9D90010C9E0 /* NewEventViewController.swift */,
 			);
 			path = BRH2015;
 			sourceTree = "<group>";
@@ -213,6 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				95561ED61BACF5D2007007F2 /* ViewController.swift in Sources */,
+				22380C241BACD9D90010C9E0 /* NewEventViewController.swift in Sources */,
+				22380C221BACD63F0010C9E0 /* EventTableViewController.swift in Sources */,
 				95561ED41BACF5D2007007F2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +419,7 @@
 				95561EEF1BACF5D2007007F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95561EF01BACF5D2007007F2 /* Build configuration list for PBXNativeTarget "BRH2015Tests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +428,7 @@
 				95561EF21BACF5D2007007F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
