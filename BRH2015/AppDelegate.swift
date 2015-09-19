@@ -56,9 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     let eventStore = EKEventStore()
     var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
-    calendars.filter { calendar in
-      calendar.title == "Uber"
-    }
+    let filteredCalendars = calendars.filter { calendar in
+      if let calendar = calendar as? EKCalendar {
+        return calendar.title == "Uber"
+      } else {
+        return false
+      }
+    } as! [EKCalendar]
     if !calendars.isEmpty {
       let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 3600), calendars: calendars)
       let events = eventStore.eventsMatchingPredicate(predicate)
