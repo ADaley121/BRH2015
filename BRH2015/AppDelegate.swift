@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
   
+  // TODO: remove objects when handling local notifs
   func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    println("background fetch")
     let eventStore = EKEventStore()
     var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
     let filteredCalendars = calendars.filter { calendar in
@@ -64,10 +66,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
     } as! [EKCalendar]
     if !calendars.isEmpty {
-      let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 3600), calendars: calendars)
-      let events = eventStore.eventsMatchingPredicate(predicate)
-      // TODO: filter array by nsuserdefaults and register local notif for each item
+      let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400), calendars: calendars)
+      if let events = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
+        var processed: [String]
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("already pushed") as? NSData {
+          processed = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! [String]
+        } else {
+          processed = []
+        }
+        let filteredEvents = events.filter { event in
+          processed.filter { $0 == event.eventIdentifier }.count == 0
+        }
+        for event in filteredEvents {
+          let localNotif = UILocalNotification()
+          localNotif.fireDate = NSDate(timeInterval: -900, sinceDate: event.startDate)
+          localNotif.alertTitle = "\(event.title) happens in 15 minutes!"
+          localNotif.alertBody = "Remember to book an uber to get you to the event!"
+          localNotif.alertAction = "Ok"
+          localNotif.userInfo = ["event": event.eventIdentifier]
+          localNotif.soundName = UILocalNotificationDefaultSoundName
+          localNotif.applicationIconBadgeNumber = 1
+          UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
+          processed.append(event.eventIdentifier)
+
+        }
+        println(UIApplication.sharedApplication().scheduledLocalNotifications)
+        let newData = NSKeyedArchiver.archivedDataWithRootObject(processed)
+        NSUserDefaults.standardUserDefaults().setValue(newData, forKey: "already pushed")
+      }
     }
+    completionHandler(UIBackgroundFetchResult.NewData)
   }
   
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {

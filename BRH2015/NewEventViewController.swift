@@ -59,7 +59,7 @@ class NewEventViewController: UIViewController {
         switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
         case .Authorized:
             var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
-            let filteredCalendars = calendars.filter { c in
+            var filteredCalendars = calendars.filter { c in
                 if let c = c as? EKCalendar {
                     return c.title == "Uber"
                 } else {
@@ -74,7 +74,8 @@ class NewEventViewController: UIViewController {
                 
                 newCalendar.source = sourcesInEventStore.filter {(source: EKSource) -> Bool in
                     source.sourceType.value == EKSourceTypeLocal.value}.first
-                
+              
+                filteredCalendars.append(newCalendar)
                 var error: NSError? = nil
                 let calendarWasSaved = eventStore.saveCalendar(newCalendar, commit: true, error: &error)
                 
