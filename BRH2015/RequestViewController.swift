@@ -18,7 +18,17 @@ class RequestViewController: UIViewController {
   
   @IBOutlet weak var timeLabel: UILabel!
   
-  var localNotif: UILocalNotification!
+  var localNotif: UILocalNotification = {
+    let localNotifi = UILocalNotification()
+    localNotifi.fireDate = NSDate(timeInterval: -900, sinceDate: NSDate())
+    localNotifi.alertTitle = "HELLO happens in 15 minutes!"
+    localNotifi.alertBody = "Remember to book an uber to get you to the event!"
+    localNotifi.alertAction = "Ok"
+    localNotifi.userInfo = ["event": "EAA3388D-A8F7-4692-9E07-4C768EFC2788:4413E7AA-DF40-4EDD-9DB0-EF78C2B3559E"]
+    localNotifi.soundName = UILocalNotificationDefaultSoundName
+    localNotifi.applicationIconBadgeNumber = 1
+    return localNotifi
+  }()
   
   var gmsmarker: GMSMarker?
   
@@ -28,6 +38,8 @@ class RequestViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    CLLocationManager().requestWhenInUseAuthorization()
     
     NSNotificationCenter.defaultCenter().addObserverForName("both locations", object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { notification in
       DataManager.sharedInstance.timeEstimate(self.userLocation!.coordinate.latitude, longitude: self.userLocation!.coordinate.longitude) {
@@ -52,10 +64,14 @@ class RequestViewController: UIViewController {
     mapView.myLocationEnabled = true
     
     if let eventID = localNotif.userInfo?["event"] as? String {
+      println("id" + eventID)
       if let event = EKEventStore().eventWithIdentifier(eventID) {
-        if let locationString = event.location {
+        println("ev \(event)")
+        if let locationString = event.location where locationString != "" {
+          println("loc" + locationString)
           CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
             if let placemarks = placemarks where !placemarks.isEmpty {
+              println(placemarks)
               self.gmsmarker = GMSMarker(position: placemarks[0].coordinate)
               self.gmsmarker!.map = self.mapView
               if let userLocation = self.userLocation {
