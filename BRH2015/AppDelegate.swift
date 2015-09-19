@@ -8,6 +8,7 @@
 
 import UIKit
 import OAuthSwift
+import EventKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    EKEventStore().requestAccessToEntityType(EKEntityTypeEvent) { success, error in
+      if success {
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+      }
+    }
+    
+    let notifTypes = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert;
+    let notifSettings = UIUserNotificationSettings(forTypes: notifTypes, categories: nil)
+    UIApplication.sharedApplication().registerUserNotificationSettings(notifSettings)
+    
     return true
   }
 
@@ -42,6 +53,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
   
+  func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    let eventStore = EKEventStore()
+    var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
+    calendars.filter { calendar in
+      calendar.title == "Uber"
+    }
+    if !calendars.isEmpty {
+      let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 3600), calendars: calendars)
+      let events = eventStore.eventsMatchingPredicate(predicate)
+      // TODO: filter array by nsuserdefaults and register local notif for each item
+    }
+  }
+  
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
     println("here")
     if (url.host == "callback") {
@@ -50,6 +74,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       OAuth2Swift.handleOpenURL(url)
     }
     return true
+  }
+  
+  func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    // TODO: Handle Local notifs
   }
 
 

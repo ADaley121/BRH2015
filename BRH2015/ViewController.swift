@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     let params = [String:String]()
     let state: String = generateStateWithLength(20) as String
     let redirectURL = "localhost://callback/uber".stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-    oauth.authorizeWithCallbackURL( NSURL(string: redirectURL!)!, scope: "profile", state: state, success: {
+    oauth.authorizeWithCallbackURL( NSURL(string: redirectURL!)!, scope: "profile request", state: state, success: {
       credential, response, parameters in
         KeychainWrapper.setString(credential.oauth_token, forKey: "auth")
         DataManager.sharedInstance.getProfile { result, error in
