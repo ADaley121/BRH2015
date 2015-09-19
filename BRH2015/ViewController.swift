@@ -32,6 +32,10 @@ class ViewController: UIViewController {
     oauth.authorizeWithCallbackURL( NSURL(string: redirectURL!)!, scope: "profile", state: state, success: {
       credential, response, parameters in
         KeychainWrapper.setString(credential.oauth_token, forKey: "auth")
+        DataManager.sharedInstance.getProfile { result, error in
+          println(error)
+          println(result)
+        }
       }, failure: {(error:NSError!) -> Void in
         print(error.localizedDescription, terminator: "")
     })
