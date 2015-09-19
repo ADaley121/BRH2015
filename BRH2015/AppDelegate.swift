@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
     }
     
+    let notifTypes = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert;
+    let notifSettings = UIUserNotificationSettings(forTypes: notifTypes, categories: nil)
+    UIApplication.sharedApplication().registerUserNotificationSettings(notifSettings)
+    
     return true
   }
 
@@ -60,8 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let events = eventStore.eventsMatchingPredicate(predicate)
       // TODO: filter array by nsuserdefaults and register local notif for each item
     }
-    
-    
   }
   
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
@@ -72,6 +74,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       OAuth2Swift.handleOpenURL(url)
     }
     return true
+  }
+  
+  func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    // TODO: Handle Local notifs
   }
 
 
