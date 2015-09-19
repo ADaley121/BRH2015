@@ -30,7 +30,7 @@ class RequestViewController: UIViewController {
     localNotifi.alertTitle = "HELLO happens in 15 minutes!"
     localNotifi.alertBody = "Remember to book an uber to get you to the event!"
     localNotifi.alertAction = "Ok"
-    localNotifi.userInfo = ["event": "EAA3388D-A8F7-4692-9E07-4C768EFC2788:3F37F844-7496-4011-B19D-A188E60F3E54"]
+    localNotifi.userInfo = ["event": "EAA3388D-A8F7-4692-9E07-4C768EFC2788:613E7AB2-F802-4DCA-B745-34DCF07BE52A"]
     localNotifi.soundName = UILocalNotificationDefaultSoundName
     localNotifi.applicationIconBadgeNumber = 1
     return localNotifi
@@ -51,6 +51,9 @@ class RequestViewController: UIViewController {
       let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
       toolbar.items = [UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), UIBarButtonItem(barButtonSystemItem: .Done, target: productTextField, action: "resignFirstResponder")]
       productTextField.inputAccessoryView = toolbar
+      if let products = products where products.count == 0 {
+        productTextField.text = "Sorry there are no available rides in your area"
+      }
     }
   }
   
@@ -72,6 +75,7 @@ class RequestViewController: UIViewController {
   var times: [JSON]? {
     didSet {
       if let times = times {
+        println("TIMES\(times)")
         if let selectedProduct = selectedProduct {
           let id = selectedProduct["product_id"].stringValue
           for product in times {
@@ -118,15 +122,15 @@ class RequestViewController: UIViewController {
       DataManager.sharedInstance.timeEstimate(self.userLocation!.coordinate.latitude, longitude: self.userLocation!.coordinate.longitude) {
         result, error in
         if let result = result {
-          println(result)
+          println("TIMES\(result)")
           if result["times"] != nil {
+            println("TIMESTIMESTIMES")
             self.times = result["times"].arrayValue
           }
         }
       }
       DataManager.sharedInstance.priceEstimate((self.userLocation!.coordinate.latitude, self.userLocation!.coordinate.longitude), end: (self.gmsmarker!.position.latitude, self.gmsmarker!.position.longitude)) { result, error in
         if let result = result {
-          println(result)
           if result["prices"] != nil {
             self.prices = result["prices"].arrayValue
           }
@@ -141,7 +145,6 @@ class RequestViewController: UIViewController {
     mapView.myLocationEnabled = true
     
     if let eventID = localNotif.userInfo?["event"] as? String {
-      println("id " + eventID)
       let eventStore = EKEventStore()
       var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
       let filteredCalendars = calendars.filter { calendar in
@@ -156,15 +159,8 @@ class RequestViewController: UIViewController {
       events = events.filter { $0.eventIdentifier == eventID }
       if events.count != 0 {
         let event = events[0]
-        println(event.location)
-        println(event.startDate)
-        println(event.calendar?.calendarIdentifier)
-        println(event.notes)
-        println(event.title)
-        println(event.startDate)
         self.eventNameLabel.text = event.title
         if let locationString = event.location where locationString != "" {
-          println("loc" + locationString)
           CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
             if let placemarks = placemarks as? [CLPlacemark] where !placemarks.isEmpty {
               println(placemarks)
@@ -200,6 +196,7 @@ class RequestViewController: UIViewController {
         }
         DataManager.sharedInstance.getProducts(self.userLocation!.coordinate.latitude, longitude: self.userLocation!.coordinate.longitude) { json, error in
           if let json = json {
+            println(json)
             if json["products"] != nil {
               self.products = json["products"].arrayValue
             }

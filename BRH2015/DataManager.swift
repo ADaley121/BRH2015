@@ -31,7 +31,7 @@ enum Router: URLStringConvertible {
       case .PriceEstimate:
         return "estimates/price"
       case .TimeEstimate:
-        return "estimate/time"
+        return "estimates/time"
         
       case .Me:
         return "me"
@@ -56,7 +56,7 @@ class DataManager: NSObject {
   
   func getProducts(latitude: Double, longitude: Double, completion: (result: JSON?, error: NSError?) -> ()) {
     updateManagerForAuth()
-    request(.GET, Router.Products, parameters: ["latitude": latitude, "longitude": latitude], encoding: .URL)
+    request(.GET, Router.Products, parameters: ["latitude": latitude, "longitude": longitude], encoding: .URL)
       .responseJSON { request, response, data, error in
         if let error = error {
           completion(result: nil, error: error)
