@@ -13,11 +13,22 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     
     var events: [EKEvent] = []
     
+    var startDateFormat = NSDateFormatter()
+    var endDateFormat = NSDateFormatter()
+    
+    let uberLogo: UIImage = UIImage(named: "Uber Logo")!
+    
     @IBOutlet weak var eventTableView:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        eventTableView.delegate = self
+        eventTableView.dataSource = self
         
+        startDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
+        startDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
+        endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
+        endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,11 +43,14 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
                 } else {
                     return false
                 }
-            } as! [EKCalendar]
-            if filteredCalendars.isEmpty {
-                
-            } else {
-                
+                } as! [EKCalendar]
+            if !calendars.isEmpty {
+                let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400).dateByAddingTimeInterval(-3600), calendars: calendars)
+                println("predicate: \(predicate)")
+                if let e = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
+                    self.events = e
+                    return events.count
+                }
             }
         case .Denied:
             println("Access Denied")
@@ -45,10 +59,19 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         default:
             println("default case")
         }
-        return 1
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = EventTableViewCell()
+        let event = events[indexPath.row]
+        cell.titleLabel.text = event.title
+        cell.locationLabel.text = event.location
+        cell.startLabel.text = startDateFormat.stringFromDate(event.startDate)
+        cell.endLabel.text = endDateFormat.stringFromDate(event.endDate)
+        if event.calendar.title == "Uber" {
+            cell.uberImage.image = uberLogo
+        }
         return UITableViewCell()
     }
     

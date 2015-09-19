@@ -29,12 +29,14 @@ class NewEventViewController: UIViewController {
         
         startDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         startDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
+        startDateFormat.dateFormat = "MM/dd hh:mm"
         startDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
         startDatePicker.addTarget(self, action: Selector("handleStartDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         startTimeField.inputView = startDatePicker
         
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
-        endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
+        endDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
+        endDateFormat.dateFormat = "MM/dd hh:mm"
         endDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
         endDatePicker.addTarget(self, action: Selector("handleEndDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         endTimeField.inputView = endDatePicker
@@ -42,15 +44,11 @@ class NewEventViewController: UIViewController {
     }
     
     func handleStartDatePicker(sender: UIDatePicker) {
-        var formatter: NSDateFormatter = NSDateFormatter()
-        formatter.dateFormat = "MM-dd-hh-mm"
-        startTimeField.text = formatter.stringFromDate(sender.date)
+        startTimeField.text = startDateFormat.stringFromDate(sender.date)
     }
     
     func handleEndDatePicker(sender: UIDatePicker) {
-        var formatter: NSDateFormatter = NSDateFormatter()
-        formatter.dateFormat = "MM-dd-hh-mm"
-        endTimeField.text = formatter.stringFromDate(sender.date)
+        endTimeField.text = endDateFormat.stringFromDate(sender.date)
     }
     
     @IBAction func addEvent(sender: UIButton) {
