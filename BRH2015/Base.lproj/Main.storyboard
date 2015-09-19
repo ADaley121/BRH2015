@@ -39,6 +39,16 @@
                                     <segue destination="w6P-EI-I6S" kind="show" id="zTy-WZ-D5I"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLC-vj-D81">
+                                <rect key="frame" x="235" y="183" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="6VM-Iq-4wa" kind="show" id="jvX-K9-nDh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -165,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="1120" y="272"/>
         </scene>
-        <!--View Controller-->
+        <!--Request View Controller-->
         <scene sceneID="Rvd-oq-FbC">
             <objects>
-                <viewController id="6VM-Iq-4wa" sceneMemberID="viewController">
+                <viewController id="6VM-Iq-4wa" customClass="RequestViewController" customModule="BRH2015" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Urc-OT-XQX"/>
                         <viewControllerLayoutGuide type="bottom" id="Yg8-gv-Zo0"/>
@@ -177,7 +187,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luA-BG-AjA">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luA-BG-AjA" customClass="GMSMapView">
                                 <rect key="frame" x="26" y="41" width="360" height="360"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -274,6 +284,11 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="luA-BG-AjA" id="6X5-DN-Hk0"/>
+                        <outlet property="priceLabel" destination="Rep-V2-4iK" id="8df-wU-SgL"/>
+                        <outlet property="timeLabel" destination="F9X-Vp-2DM" id="qNy-fQ-3e3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0AC-fw-9J6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

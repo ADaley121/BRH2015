@@ -9,9 +9,12 @@
 import UIKit
 import OAuthSwift
 import EventKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+  
+  let googleMapsKey = "AIzaSyDcj2ejOZ6Ci9B10Ukrs2Fr8AMOOwHWJJk"
 
   var window: UIWindow?
 
@@ -27,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notifTypes = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert;
     let notifSettings = UIUserNotificationSettings(forTypes: notifTypes, categories: nil)
     UIApplication.sharedApplication().registerUserNotificationSettings(notifSettings)
+    
+    GMSServices.provideAPIKey(googleMapsKey)
     
     return true
   }
@@ -65,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
       }
     } as! [EKCalendar]
-    if !calendars.isEmpty {
+    if !filteredCalendars.isEmpty {
       let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400), calendars: calendars)
       if let events = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
         var processed: [String]
@@ -75,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           processed = []
         }
         let filteredEvents = events.filter { event in
-          processed.filter { $0 == event.eventIdentifier }.count == 0
+          return processed.filter { $0 == event.eventIdentifier }.count == 0
         }
         for event in filteredEvents {
           let localNotif = UILocalNotification()
@@ -88,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           localNotif.applicationIconBadgeNumber = 1
           UIApplication.sharedApplication().scheduleLocalNotification(localNotif)
           processed.append(event.eventIdentifier)
-
         }
         println(UIApplication.sharedApplication().scheduledLocalNotifications)
         let newData = NSKeyedArchiver.archivedDataWithRootObject(processed)
