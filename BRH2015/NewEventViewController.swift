@@ -10,12 +10,12 @@ import UIKit
 import EventKit
 
 class NewEventViewController: UIViewController {
-
+    
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var startTimeField: UITextField!
     @IBOutlet weak var endTimeField: UITextField!
-    @IBOutlet weak var notesField: UITextField!
+    @IBOutlet weak var notesField: UITextView!
     
     let startDateFormat = NSDateFormatter()
     let startDatePicker = UIDatePicker()
@@ -25,51 +25,88 @@ class NewEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         startDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         startDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
         startDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
-        startDatePicker.addTarget(self, action: Selector("updateStartField:"), forControlEvents: UIControlEvents.ValueChanged)
+        startDatePicker.addTarget(self, action: Selector("handleStartDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         startTimeField.inputView = startDatePicker
         
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
-        endDatePicker.addTarget(self, action: Selector("updateEndField:"), forControlEvents: UIControlEvents.ValueChanged)
+        endDatePicker.addTarget(self, action: Selector("handleEndDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         endTimeField.inputView = endDatePicker
         
     }
     
+    func handleStartDatePicker(sender: UIDatePicker) {
+        var formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = "MM-dd-hh-mm"
+        startTimeField.text = formatter.stringFromDate(sender.date)
+    }
     
+    func handleEndDatePicker(sender: UIDatePicker) {
+        var formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = "MM-dd-hh-mm"
+        endTimeField.text = formatter.stringFromDate(sender.date)
+    }
     
     @IBAction func addEvent(sender: UIButton) {
         let eventStore = EKEventStore()
         
         switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
         case .Authorized:
-            let calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
-                as! [EKCalendar]
-            for calendar in calendars {
-                if calendar.title == "Uber" {
-                    var event = EKEvent(eventStore: eventStore)
-                    event.calendar = calendar
-                    
-                    event.title = titleField.text
-                    event.location = locationField.text
-                    event.startDate = startDatePicker.date
-                    event.endDate = endDatePicker.date
-                    event.notes = notesField.text
-                    
-                    // Save Event in Calendar
-                    var error: NSError?
-                    let result = eventStore.saveEvent(event, span: EKSpanThisEvent, error: &error)
-                    
-                    if result == false {
-                        if let theError = error {
-                            println("An error occured \(theError)")
-                        }
-                    }
+            var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
+            let filteredCalendars = calendars.filter { c in
+                if let c = c as? EKCalendar {
+                    return c.title == "Uber"
+                } else {
+                    return false
+                }
+            } as! [EKCalendar]
+            if filteredCalendars.isEmpty {
+                let newCalendar = EKCalendar(forEntityType: EKEntityTypeEvent, eventStore: eventStore)
+                newCalendar.title = "Uber"
+                
+                let sourcesInEventStore = eventStore.sources() as! [EKSource]
+                
+                newCalendar.source = sourcesInEventStore.filter {(source: EKSource) -> Bool in
+                    source.sourceType.value == EKSourceTypeLocal.value}.first
+                
+                var error: NSError? = nil
+                let calendarWasSaved = eventStore.saveCalendar(newCalendar, commit: true, error: &error)
+                
+                if !calendarWasSaved {
+                    let alert = UIAlertController(title: "Calendar could not save", message: error?.localizedDescription, preferredStyle: .Alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    alert.addAction(OKAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    NSUserDefaults().setObject(newCalendar.calendarIdentifier, forKey: "EventTrackerPrimaryCalendar")
                 }
             }
+            var event = EKEvent(eventStore: eventStore)
+            event.calendar = filteredCalendars[0]
+            
+            event.title = titleField.text
+            event.location = locationField.text
+            event.startDate = startDatePicker.date
+            event.endDate = endDatePicker.date
+            event.notes = notesField.text
+            
+            // Save Event in Calendar
+            var error: NSError?
+            let result = eventStore.saveEvent(event, span: EKSpanThisEvent, error: &error)
+            
+            if result == false {
+                if let theError = error {
+                    println("An error occured \(theError)")
+                }
+            }
+            
+            
         case .Denied:
             println("Access denied")
         case .NotDetermined:
@@ -78,5 +115,5 @@ class NewEventViewController: UIViewController {
             println("Case Default")
         }
     }
-
+    
 }
