@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     let redirectURL = "localhost://callback/uber".stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
     oauth.authorizeWithCallbackURL( NSURL(string: redirectURL!)!, scope: "profile", state: state, success: {
       credential, response, parameters in
-        print(credential.oauth_token)
+        KeychainWrapper.setString(credential.oauth_token, forKey: "auth")
       }, failure: {(error:NSError!) -> Void in
         print(error.localizedDescription, terminator: "")
     })
