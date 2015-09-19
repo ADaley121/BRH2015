@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  }
+  
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    println("here")
+    if (url.host == "callback") {
+      println(url)
+      NSNotificationCenter.defaultCenter().addObserverForName("OAuthSwiftCallbackNotificationName", object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { notification in println("herehy381bi3")})
+      OAuth2Swift.handleOpenURL(url)
+    }
+    return true
   }
 
 
