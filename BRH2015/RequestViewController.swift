@@ -24,7 +24,7 @@ class RequestViewController: UIViewController {
     localNotifi.alertTitle = "HELLO happens in 15 minutes!"
     localNotifi.alertBody = "Remember to book an uber to get you to the event!"
     localNotifi.alertAction = "Ok"
-    localNotifi.userInfo = ["event": "EAA3388D-A8F7-4692-9E07-4C768EFC2788:4413E7AA-DF40-4EDD-9DB0-EF78C2B3559E"]
+    localNotifi.userInfo = ["event": "EAA3388D-A8F7-4692-9E07-4C768EFC2788:3F37F844-7496-4011-B19D-A188E60F3E54"]
     localNotifi.soundName = UILocalNotificationDefaultSoundName
     localNotifi.applicationIconBadgeNumber = 1
     return localNotifi
@@ -64,15 +64,33 @@ class RequestViewController: UIViewController {
     mapView.myLocationEnabled = true
     
     if let eventID = localNotif.userInfo?["event"] as? String {
-      println("id" + eventID)
-      if let event = EKEventStore().eventWithIdentifier(eventID) {
-        println("ev \(event)")
+      println("id " + eventID)
+      let eventStore = EKEventStore()
+      var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
+      let filteredCalendars = calendars.filter { calendar in
+        if let calendar = calendar as? EKCalendar {
+          return calendar.title == "Uber"
+        } else {
+          return false
+        }
+      } as! [EKCalendar]
+      let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400), calendars: filteredCalendars)
+      var events = eventStore.eventsMatchingPredicate(predicate) as! [EKEvent]
+      events = events.filter { $0.eventIdentifier == eventID }
+      if events.count != 0 {
+        let event = events[0]
+        println(event.location)
+        println(event.startDate)
+        println(event.calendar?.calendarIdentifier)
+        println(event.notes)
+        println(event.title)
+        println(event.startDate)
         if let locationString = event.location where locationString != "" {
           println("loc" + locationString)
           CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
-            if let placemarks = placemarks where !placemarks.isEmpty {
+            if let placemarks = placemarks as? [CLPlacemark] where !placemarks.isEmpty {
               println(placemarks)
-              self.gmsmarker = GMSMarker(position: placemarks[0].coordinate)
+              self.gmsmarker = GMSMarker(position: placemarks[0].location.coordinate)
               self.gmsmarker!.map = self.mapView
               if let userLocation = self.userLocation {
                 let bounds = GMSCoordinateBounds(coordinate: self.gmsmarker!.position, coordinate: userLocation.coordinate)

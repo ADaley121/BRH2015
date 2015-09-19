@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           processed = []
         }
         let filteredEvents = events.filter { event in
-          processed.filter { $0 == event.eventIdentifier }.count == 0
+          return processed.filter { $0 == event.eventIdentifier }.count == 0
         }
         for event in filteredEvents {
           let localNotif = UILocalNotification()

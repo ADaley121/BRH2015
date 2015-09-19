@@ -55,6 +55,7 @@ class DataManager: NSObject {
   }
   
   func getProducts(latitude: Double, longitude: Double, completion: (result: JSON?, error: NSError?) -> ()) {
+    updateManagerForAuth()
     request(.GET, Router.Products, parameters: ["latitude": latitude, "longitude": latitude], encoding: .URL)
       .responseJSON { request, response, data, error in
         if let error = error {
@@ -66,6 +67,7 @@ class DataManager: NSObject {
   }
   
   func getProductByID(id: Int, completion: (result: JSON?, error: NSError?) -> ()) {
+    updateManagerForAuth()
     request(.GET, Router.Product(id), parameters: nil, encoding: .URL)
       .responseJSON { request, response, data, error in
         if let error = error {
@@ -77,6 +79,7 @@ class DataManager: NSObject {
   }
   
   func priceEstimate(start: (lat: Double, long: Double), end: (lat: Double, long: Double), completion: (result: JSON?, error: NSError?) -> ()) {
+    updateManagerForAuth()
     request(.GET, Router.PriceEstimate, parameters: ["start_latitude": start.lat, "start_longitude": start.long, "end_latitude": end.lat, "end_longitude": end.long], encoding: .URL)
       .responseJSON { request, response, data, error in
         if let error = error {
@@ -88,6 +91,7 @@ class DataManager: NSObject {
   }
   
   func timeEstimate(latitude: Double, longitude: Double, completion: (result: JSON?, error: NSError?) -> ()) {
+    updateManagerForAuth()
     request(.GET, Router.TimeEstimate, parameters: ["start_latitude": latitude, "start_longitude": longitude], encoding: .URL)
       .responseJSON { request, response, data, error in
         if let error = error {
