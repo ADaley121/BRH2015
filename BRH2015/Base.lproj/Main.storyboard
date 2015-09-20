@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="A8n-Hg-jEf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="A8n-Hg-jEf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -210,6 +210,7 @@
                         <outlet property="eventTableView" destination="Y74-Ap-i2x" id="KNb-7S-Tky"/>
                         <segue destination="6VM-Iq-4wa" kind="show" identifier="EventToRequest" id="OI7-iq-jxL"/>
                         <segue destination="GIi-3e-evG" kind="show" identifier="EventToNew" id="EiX-YQ-CQZ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="eventToLogin" id="zuH-1H-lYC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zb8-Si-v2r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,7 +243,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE7-sA-4sx">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YE7-sA-4sx">
                                 <rect key="frame" x="386" y="40" width="198" height="360"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rep-V2-4iK">
@@ -304,7 +305,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNh-vL-VAF">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNh-vL-VAF">
                                 <rect key="frame" x="386" y="408" width="97" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -509,8 +510,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jvX-K9-nDh"/>
-        <segue reference="5xa-iZ-MNi"/>
         <segue reference="EiX-YQ-CQZ"/>
+        <segue reference="5xa-iZ-MNi"/>
+        <segue reference="zuH-1H-lYC"/>
+        <segue reference="jvX-K9-nDh"/>
     </inferredMetricsTieBreakers>
 </document>

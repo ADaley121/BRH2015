@@ -25,6 +25,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        println(KeychainWrapper.stringForKey("auth"))
       if !KeychainWrapper.hasValueForKey("auth") {
         performSegueWithIdentifier("eventToLogin", sender: self)
       }

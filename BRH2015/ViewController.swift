@@ -25,17 +25,16 @@ class ViewController: UIViewController {
   }
 
   @IBAction func loginOAuth(sender: UIButton) {
+    
     let oauth = OAuth2Swift(consumerKey: clientID, consumerSecret: clientSecret, authorizeUrl: "https://login.uber.com/oauth/authorize", accessTokenUrl: "https://login.uber.com/oauth/token", responseType: "code", contentType: "multipart/form-data")
     let params = [String:String]()
     let state: String = generateStateWithLength(20) as String
     let redirectURL = "localhost://callback/uber".stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-    oauth.authorizeWithCallbackURL( NSURL(string: redirectURL!)!, scope: "profile request", state: state, success: {
+    println(redirectURL)
+    oauth.authorizeWithCallbackURL( NSURL(string: redirectURL!)!, scope: "request", state: state, success: {
       credential, response, parameters in
         KeychainWrapper.setString(credential.oauth_token, forKey: "auth")
-        DataManager.sharedInstance.getProfile { result, error in
-          println(error)
-          println(result)
-        }
+        println(credential.oauth_token)
       }, failure: {(error:NSError!) -> Void in
         print(error.localizedDescription, terminator: "")
     })
