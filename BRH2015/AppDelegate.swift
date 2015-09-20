@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    UINavigationBar.appearance().setBackgroundImage(UIImage(named: "navbar"), forBarMetrics: .Default)
+    UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    
+    UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    
+    
     // Override point for customization after application launch.
     EKEventStore().requestAccessToEntityType(EKEntityTypeEvent) { success, error in
       if success {

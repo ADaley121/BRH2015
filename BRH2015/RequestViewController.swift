@@ -18,11 +18,11 @@ class RequestViewController: UIViewController {
   
   @IBOutlet weak var timeLabel: UILabel!
   
-  @IBOutlet weak var eventNameLabel: UILabel!
-  
   @IBOutlet weak var productTextField: UITextField!
   
   @IBOutlet weak var locationButton: UIButton!
+  
+  @IBOutlet weak var makeRequestButton: UIButton!
   
   var localNotif: UILocalNotification!
   
@@ -36,8 +36,10 @@ class RequestViewController: UIViewController {
     didSet {
       if let products = products where products.count == 0 {
         if products.count == 0 {
+          productTextField.enabled = false
           productTextField.text = "Sorry there are no available rides in your area"
         } else {
+          productTextField.enabled = true
           selectedProduct = products[0]
         }
       }
@@ -54,6 +56,8 @@ class RequestViewController: UIViewController {
               self.priceLabel.text = product["estimate"].stringValue
             }
           }
+        } else {
+          self.priceLabel.text = ""
         }
       }
     }
@@ -70,6 +74,8 @@ class RequestViewController: UIViewController {
               self.timeLabel.text = product["estimate"].stringValue + " Seconds"
             }
           }
+        } else {
+          self.timeLabel.text = ""
         }
       }
     }
@@ -101,6 +107,16 @@ class RequestViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    timeLabel.text = "?"
+    priceLabel.text = "?"
+    
+    makeRequestButton.layer.cornerRadius = 5.0
+    makeRequestButton.layer.borderColor = UIColor.blackColor().CGColor
+    makeRequestButton.layer.borderWidth = 1.0
+    makeRequestButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+    
+    productTextField.enabled = false
     
     let pickerView = UIPickerView()
     pickerView.delegate = self
@@ -154,7 +170,9 @@ class RequestViewController: UIViewController {
         if filteredEvents.count != 0 {
           print("c")
           let event = filteredEvents[0]
-          self.eventNameLabel.text = event.title
+          let startDateFormat = NSDateFormatter()
+          startDateFormat.dateFormat = "hh:mm"
+          navigationItem.title = "\(event.title) (\(startDateFormat.stringFromDate(event.startDate)))"
           if let locationString = event.location where locationString != "" {
             print("d")
             CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
@@ -181,6 +199,10 @@ class RequestViewController: UIViewController {
       }
       
     }
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    mapView.removeObserver(self, forKeyPath: "myLocation")
   }
   
   override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {

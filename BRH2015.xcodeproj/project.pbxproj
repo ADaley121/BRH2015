@@ -29,6 +29,7 @@
 		95561EEA1BACF5D2007007F2 /* BRH2015Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95561EE91BACF5D2007007F2 /* BRH2015Tests.swift */; };
 		9580F40A1BAE5A000016209D /* AutocompleteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9580F4091BAE5A000016209D /* AutocompleteOverlayView.swift */; };
 		9580F40C1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9580F40B1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift */; };
+		958204F31BAEA7370003015E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958204F21BAEA7370003015E /* PlaceholderTextView.swift */; };
 		95E129981BAD4F83001D57B2 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E129961BAD4F83001D57B2 /* EventTableViewController.swift */; };
 		95E129991BAD4F83001D57B2 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E129971BAD4F83001D57B2 /* NewEventViewController.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +60,7 @@
 		953C1CF71BAD58B8002C8079 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		953C1D031BAD59F7002C8079 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		953C1D051BADCB06002C8079 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
-		95561ECE1BACF5D2007007F2 /* BRH2015.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRH2015.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95561ECE1BACF5D2007007F2 /* Reminder Rides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reminder Rides.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95561ED21BACF5D2007007F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95561ED31BACF5D2007007F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95561ED51BACF5D2007007F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 		95561EE91BACF5D2007007F2 /* BRH2015Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRH2015Tests.swift; sourceTree = "<group>"; };
 		9580F4091BAE5A000016209D /* AutocompleteOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteOverlayView.swift; sourceTree = "<group>"; };
 		9580F40B1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteOverlayTableViewController.swift; sourceTree = "<group>"; };
+		958204F21BAEA7370003015E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		95E129961BAD4F83001D57B2 /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		95E129971BAD4F83001D57B2 /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		E9B1F80F103C6AF0CB6EC8CD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +136,7 @@
 		95561ECF1BACF5D2007007F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95561ECE1BACF5D2007007F2 /* BRH2015.app */,
+				95561ECE1BACF5D2007007F2 /* Reminder Rides.app */,
 				95561EE31BACF5D2007007F2 /* BRH2015Tests.xctest */,
 			);
 			name = Products;
@@ -146,6 +148,7 @@
 				9580F4091BAE5A000016209D /* AutocompleteOverlayView.swift */,
 				95561ED31BACF5D2007007F2 /* AppDelegate.swift */,
 				9580F40B1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift */,
+				958204F21BAEA7370003015E /* PlaceholderTextView.swift */,
 				953C1D031BAD59F7002C8079 /* DataManager.swift */,
 				953C1D021BAD58E3002C8079 /* alamofire */,
 				95561ED51BACF5D2007007F2 /* ViewController.swift */,
@@ -215,7 +218,7 @@
 			);
 			name = BRH2015;
 			productName = BRH2015;
-			productReference = 95561ECE1BACF5D2007007F2 /* BRH2015.app */;
+			productReference = 95561ECE1BACF5D2007007F2 /* Reminder Rides.app */;
 			productType = "com.apple.product-type.application";
 		};
 		95561EE21BACF5D2007007F2 /* BRH2015Tests */ = {
@@ -247,6 +250,7 @@
 				TargetAttributes = {
 					95561ECD1BACF5D2007007F2 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = C27CEAWK74;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -370,6 +374,7 @@
 				95561ED41BACF5D2007007F2 /* AppDelegate.swift in Sources */,
 				222D25E01BADED6E00B34468 /* EventTableViewCell.swift in Sources */,
 				9580F40A1BAE5A000016209D /* AutocompleteOverlayView.swift in Sources */,
+				958204F31BAEA7370003015E /* PlaceholderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,10 +506,11 @@
 			baseConfigurationReference = 28E50444CC9847EE2A48C8A8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BRH2015/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Reminder Rides";
 			};
 			name = Debug;
 		};
@@ -513,10 +519,11 @@
 			baseConfigurationReference = 905357E703266AD1F005B5E0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BRH2015/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Reminder Rides";
 			};
 			name = Release;
 		};

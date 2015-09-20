@@ -18,10 +18,40 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     var startDateFormat = NSDateFormatter()
     var endDateFormat = NSDateFormatter()
     
-    let uberLogo: UIImage = UIImage(named: "Uber Logo")!
-    
     @IBOutlet weak var eventTableView:UITableView!
+  
+  func reloadEvents() {
+    let eventStore = EKEventStore()
     
+    switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
+    case .Authorized:
+      var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
+      if !calendars.isEmpty {
+        let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400).dateByAddingTimeInterval(-3600), calendars: calendars)
+        println("predicate: \(predicate)")
+        if let e = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
+          events = []
+          ids = []
+          for event in e {
+            if let calendar = event.calendar, id = event.eventIdentifier {
+              events.append(event)
+              ids.append(id)
+            }
+          }
+          events = events.reverse()
+          ids = ids.reverse()
+          eventTableView.reloadData()
+        }
+      }
+    case .Denied:
+      println("Access Denied")
+    case .NotDetermined:
+      println("Status not determined")
+    default:
+      println("default case")
+    }
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -36,36 +66,18 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDateFormat.dateFormat = "hh:mm"
-        
-        let eventStore = EKEventStore()
-        
-        switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
-        case .Authorized:
-            var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
-            var filteredCalendars = calendars.filter { c in
-                if let c = c as? EKCalendar {
-                    return c.title == "Uber"
-                } else {
-                    return false
-                }
-                } as! [EKCalendar]
-            if !calendars.isEmpty {
-                let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400).dateByAddingTimeInterval(-3600), calendars: calendars)
-                println("predicate: \(predicate)")
-                if let e = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
-                    self.events = e
-                    ids = events.map({$0.eventIdentifier})
-                    eventTableView.reloadData()
-                }
-            }
-        case .Denied:
-            println("Access Denied")
-        case .NotDetermined:
-            println("Status not determined")
-        default:
-            println("default case")
-        }
+      
+
     }
+  
+  override func viewDidAppear(animated: Bool) {
+    reloadEvents()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    events = []
+    ids = []
+  }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -74,13 +86,18 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventTableViewCell
         let event = events[indexPath.row]
-        println(event)
         cell.titleLabel.text = event.title
         cell.locationLabel.text = event.location
         cell.startLabel.text = startDateFormat.stringFromDate(event.startDate)
         cell.endLabel.text = endDateFormat.stringFromDate(event.endDate)
+      if let color = UIColor(CGColor: event.calendar.CGColor) {
+        cell.vertLine.backgroundColor = color
+      }
+      
         if event.calendar.title == "Uber" {
-            cell.uberImage.image = uberLogo
+          cell.uberImage.hidden = false
+        } else {
+          cell.uberImage.hidden = true
         }
         return cell
     }
@@ -104,9 +121,20 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             destVC.localNotif = notif
         } else if segue.identifier == "EventToNew" {
             var destVC = segue.destinationViewController as! NewEventViewController
-            let event = sender as! EKEvent
+          if let sender = sender as? EKEvent {
+            let event = sender
             destVC.event = event
+          }
+          
             
         }
     }
+  
+  @IBAction func newNote(sender: UIBarButtonItem) {
+    performSegueWithIdentifier("EventToNew", sender: sender)
+  }
+  
+  @IBAction func unwindToMain(sender: UIStoryboardSegue) {
+    
+  }
 }
