@@ -23,6 +23,10 @@ class NewEventViewController: UIViewController {
     let endDatePicker = UIDatePicker()
     
     var event: EKEvent? = nil
+  
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+      view.endEditing(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +78,8 @@ class NewEventViewController: UIViewController {
         }
     }
     
-    @IBAction func addEvent(sender: UIButton) {
+    @IBAction func addEvent(sender: UIBarButtonItem) {
+      println("called")
         if titleField.text == "" {
             let alert = UIAlertController(title: "Could Not Save", message: "You must have an event title.", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
@@ -85,7 +90,7 @@ class NewEventViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
             let eventStore = EKEventStore()
-            
+            println("here")
             switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
             case .Authorized:
                 var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
@@ -96,10 +101,11 @@ class NewEventViewController: UIViewController {
                         return false
                     }
                     } as! [EKCalendar]
+                println(filteredCalendars)
                 if filteredCalendars.isEmpty {
                     let newCalendar = EKCalendar(forEntityType: EKEntityTypeEvent, eventStore: eventStore)
                     newCalendar.title = "Uber"
-                    
+                    println("here2")
                     let sourcesInEventStore = eventStore.sources() as! [EKSource]
                     
                     newCalendar.source = sourcesInEventStore.filter {(source: EKSource) -> Bool in
@@ -108,7 +114,7 @@ class NewEventViewController: UIViewController {
                     filteredCalendars.append(newCalendar)
                     var error: NSError? = nil
                     let calendarWasSaved = eventStore.saveCalendar(newCalendar, commit: true, error: &error)
-                    
+                    println(calendarWasSaved)
                     if !calendarWasSaved {
                         let alert = UIAlertController(title: "Calendar could not save", message: error?.localizedDescription, preferredStyle: .Alert)
                         let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -136,7 +142,7 @@ class NewEventViewController: UIViewController {
                         println("An error occured \(theError)")
                     }
                 }
-                
+                navigationController?.popViewControllerAnimated(true)
                 
             case .Denied:
                 println("Access denied")
@@ -145,6 +151,7 @@ class NewEventViewController: UIViewController {
             default:
                 println("Case Default")
             }
+          
 
         }
     }

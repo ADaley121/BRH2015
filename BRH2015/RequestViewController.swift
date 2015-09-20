@@ -201,6 +201,10 @@ class RequestViewController: UIViewController {
     }
   }
   
+  override func viewWillDisappear(animated: Bool) {
+    mapView.removeObserver(self, forKeyPath: "myLocation")
+  }
+  
   override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
     print("g")
     if !firstLocationUpdate {

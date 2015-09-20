@@ -32,16 +32,21 @@
                                     <constraint firstAttribute="width" constant="330" id="Vwe-If-yOO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <inset key="contentEdgeInsets" minX="41" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="contentEdgeInsets" minX="25" minY="0.0" maxX="-1" maxY="0.0"/>
                                 <state key="normal" title="  LOGIN WITH UBER" image="Uber Logo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Vwe-If-yOO"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="loginOAuth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JOS-bJ-8A6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name of App" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbh-BG-90J">
-                                <rect key="frame" x="202" y="163" width="197" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reminder Rides" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbh-BG-90J">
+                                <rect key="frame" x="182" y="163" width="237" height="41"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,6 +64,7 @@
                             <constraint firstAttribute="trailing" secondItem="K4S-ZW-zKy" secondAttribute="trailing" id="a4h-hp-Hvg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K4S-ZW-zKy" secondAttribute="bottom" id="cDo-1u-tZ1"/>
                             <constraint firstAttribute="centerX" secondItem="Nbh-BG-90J" secondAttribute="centerX" id="qvC-Sf-u6G"/>
+                            <constraint firstItem="J9x-Qr-l3j" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="syC-Eg-AlT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="swv-Pk-6hg"/>
@@ -553,7 +559,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="New Event" id="2iH-bU-THb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZqZ-8F-6Nv"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZqZ-8F-6Nv">
+                            <connections>
+                                <action selector="addEvent:" destination="GIi-3e-evG" id="zPB-bc-P49"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="endTimeField" destination="ATg-8J-Q2t" id="eKi-04-Zg6"/>

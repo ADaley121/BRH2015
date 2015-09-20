@@ -60,7 +60,7 @@
 		953C1CF71BAD58B8002C8079 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		953C1D031BAD59F7002C8079 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		953C1D051BADCB06002C8079 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
-		95561ECE1BACF5D2007007F2 /* BRH2015.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRH2015.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95561ECE1BACF5D2007007F2 /* Reminder Rides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reminder Rides.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95561ED21BACF5D2007007F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95561ED31BACF5D2007007F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95561ED51BACF5D2007007F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		95561ECF1BACF5D2007007F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95561ECE1BACF5D2007007F2 /* BRH2015.app */,
+				95561ECE1BACF5D2007007F2 /* Reminder Rides.app */,
 				95561EE31BACF5D2007007F2 /* BRH2015Tests.xctest */,
 			);
 			name = Products;
@@ -218,7 +218,7 @@
 			);
 			name = BRH2015;
 			productName = BRH2015;
-			productReference = 95561ECE1BACF5D2007007F2 /* BRH2015.app */;
+			productReference = 95561ECE1BACF5D2007007F2 /* Reminder Rides.app */;
 			productType = "com.apple.product-type.application";
 		};
 		95561EE21BACF5D2007007F2 /* BRH2015Tests */ = {
@@ -250,6 +250,7 @@
 				TargetAttributes = {
 					95561ECD1BACF5D2007007F2 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = C27CEAWK74;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -505,10 +506,11 @@
 			baseConfigurationReference = 28E50444CC9847EE2A48C8A8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BRH2015/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Reminder Rides";
 			};
 			name = Debug;
 		};
@@ -517,10 +519,11 @@
 			baseConfigurationReference = 905357E703266AD1F005B5E0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BRH2015/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Reminder Rides";
 			};
 			name = Release;
 		};
