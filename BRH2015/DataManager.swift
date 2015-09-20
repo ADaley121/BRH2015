@@ -21,7 +21,14 @@ enum Router: URLStringConvertible {
   case Request
   
   var URLString: String {
-    let baseUrl = "https://api.uber.com/v1/"
+    let baseUrl: String = {
+      switch self {
+      case .Request:
+        return "https://sandbox-api.uber.com/v1/"
+      default:
+        return "https://api.uber.com/v1/"
+      }
+    }()
     let ext: String = {
       switch self {
       case .Products:
@@ -36,7 +43,7 @@ enum Router: URLStringConvertible {
       case .Me:
         return "me"
       case .Request:
-        return "requests"
+        return "/sandbox/requests"
       }
     }()
     return baseUrl + ext

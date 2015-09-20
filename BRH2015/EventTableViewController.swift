@@ -24,6 +24,10 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+      if !KeychainWrapper.hasValueForKey("auth") {
+        performSegueWithIdentifier("eventToLogin", sender: self)
+      }
         
         startDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         startDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
@@ -87,6 +91,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             self.performSegueWithIdentifier("EventToNew", sender: events[indexPath.row])
         }
+      tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

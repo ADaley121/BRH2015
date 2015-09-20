@@ -205,6 +205,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="s2p-Yd-doA"/>
                     <connections>
                         <outlet property="eventTableView" destination="Y74-Ap-i2x" id="KNb-7S-Tky"/>
                         <segue destination="6VM-Iq-4wa" kind="show" identifier="EventToRequest" id="OI7-iq-jxL"/>
@@ -461,6 +462,7 @@
                         <outlet property="notesField" destination="M45-Zd-X9l" id="QGa-gF-s7L"/>
                         <outlet property="startTimeField" destination="ao7-th-yQV" id="Lqq-iq-S8r"/>
                         <outlet property="titleField" destination="m2d-jS-eIS" id="6SS-3S-aDJ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="eventToLogin" id="Gsz-EC-j17"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qeg-c6-7nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -498,7 +500,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dcw-pH-Sqf"/>
+                        <segue destination="BzN-PD-7l6" kind="relationship" relationship="rootViewController" id="5xa-iZ-MNi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PcU-9a-jgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,6 +510,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jvX-K9-nDh"/>
+        <segue reference="5xa-iZ-MNi"/>
         <segue reference="EiX-YQ-CQZ"/>
     </inferredMetricsTieBreakers>
 </document>
