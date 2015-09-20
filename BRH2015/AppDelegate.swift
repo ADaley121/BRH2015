@@ -33,6 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     GMSServices.provideAPIKey(googleMapsKey)
     
+    if let launchOptions = launchOptions, localNotif = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+      application.applicationIconBadgeNumber = 0
+      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Request") as! RequestViewController
+      vc.localNotif = localNotif
+      println(window)
+      println(window?.rootViewController)
+      window?.rootViewController?.presentViewController(vc, animated: false, completion: nil)
+    }
+    
     return true
   }
 
@@ -113,7 +122,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-    // TODO: Handle Local notifs
+    application.applicationIconBadgeNumber = 0
+    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Request") as! RequestViewController
+    vc.localNotif = notification
+    println(window)
+    println(window?.rootViewController)
+    if let nav = window?.rootViewController as? UINavigationController {
+      nav.pushViewController(vc, animated: false)
+    }
+    println("HERE")
   }
 
 
