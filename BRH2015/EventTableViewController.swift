@@ -13,6 +13,8 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     
     var events: [EKEvent] = []
     
+    var ids = [String]()
+    
     var startDateFormat = NSDateFormatter()
     var endDateFormat = NSDateFormatter()
     
@@ -29,9 +31,7 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         endDateFormat.dateFormat = "hh:mm"
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         let eventStore = EKEventStore()
         
         switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
@@ -44,14 +44,13 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
                     return false
                 }
                 } as! [EKCalendar]
-            println(calendars)
-            println(filteredCalendars)
             if !calendars.isEmpty {
                 let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(timeIntervalSinceNow: 86400).dateByAddingTimeInterval(-3600), calendars: calendars)
                 println("predicate: \(predicate)")
                 if let e = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
                     self.events = e
-                    return events.count
+                    ids = events.map({$0.eventIdentifier})
+                    eventTableView.reloadData()
                 }
             }
         case .Denied:
@@ -61,7 +60,10 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         default:
             println("default case")
         }
-        return 0
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -79,23 +81,26 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let id = ids[indexPath.row]
         if events[indexPath.row].calendar.title == "Uber" {
-            self.performSegueWithIdentifier("EventToRequest", sender: indexPath)
+            self.performSegueWithIdentifier("EventToRequest", sender: id)
         } else {
-            self.performSegueWithIdentifier("EventToNew", sender: indexPath)
+            self.performSegueWithIdentifier("EventToNew", sender: events[indexPath.row])
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EventToRequest" {
             var destVC = segue.destinationViewController as! RequestViewController
+            let id = sender as! String
+            let notif = UILocalNotification()
+            notif.userInfo = ["event": id]
+            destVC.localNotif = notif
         } else if segue.identifier == "EventToNew" {
             var destVC = segue.destinationViewController as! NewEventViewController
-            let row = (sender as! NSIndexPath).row
-            let event = events[row]
+            let event = sender as! EKEvent
+            destVC.event = event
             
-            startDateFormat.dateFormat = "MM/dd hh:mm"
-            endDateFormat.dateFormat = "MM/dd hh:mm"
         }
     }
 }

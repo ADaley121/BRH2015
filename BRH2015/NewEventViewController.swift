@@ -22,6 +22,8 @@ class NewEventViewController: UIViewController {
     let endDateFormat = NSDateFormatter()
     let endDatePicker = UIDatePicker()
     
+    var event: EKEvent? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,14 @@ class NewEventViewController: UIViewController {
         endDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
         endDatePicker.addTarget(self, action: Selector("handleEndDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         endTimeField.inputView = endDatePicker
+        
+        if let e = event {
+            self.titleField.text = e.title
+            self.locationField.text = e.location
+            self.startTimeField.text = startDateFormat.stringFromDate(e.startDate)
+            self.endTimeField.text = endDateFormat.stringFromDate(e.endDate)
+            self.notesField.text = e.notes
+        }
         
     }
     
