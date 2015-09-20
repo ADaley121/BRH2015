@@ -13,10 +13,15 @@ class ViewController: UIViewController {
   
   let clientID = "iiUGtiEYbXfO9NmIuWzKhPo151ExSYdD"
   let clientSecret = "U9qAVLyjouqly7f0MmchANqbQXhfczuT64MruwG9"
+  
+  @IBOutlet weak var loginButton: UIButton!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    loginButton.layer.cornerRadius = 10.0
+    loginButton.layer.borderWidth = 2.0
+    loginButton.layer.borderColor = UIColor.whiteColor().CGColor
   }
 
   override func didReceiveMemoryWarning() {
@@ -35,6 +40,7 @@ class ViewController: UIViewController {
       credential, response, parameters in
         KeychainWrapper.setString(credential.oauth_token, forKey: "auth")
         println(credential.oauth_token)
+        self.performSegueWithIdentifier("unwindToEvent", sender: self)
       }, failure: {(error:NSError!) -> Void in
         print(error.localizedDescription, terminator: "")
     })

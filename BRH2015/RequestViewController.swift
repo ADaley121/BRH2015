@@ -36,8 +36,10 @@ class RequestViewController: UIViewController {
     didSet {
       if let products = products where products.count == 0 {
         if products.count == 0 {
+          productTextField.enabled = false
           productTextField.text = "Sorry there are no available rides in your area"
         } else {
+          productTextField.enabled = true
           selectedProduct = products[0]
         }
       }
@@ -54,6 +56,8 @@ class RequestViewController: UIViewController {
               self.priceLabel.text = product["estimate"].stringValue
             }
           }
+        } else {
+          self.priceLabel.text = ""
         }
       }
     }
@@ -70,6 +74,8 @@ class RequestViewController: UIViewController {
               self.timeLabel.text = product["estimate"].stringValue + " Seconds"
             }
           }
+        } else {
+          self.timeLabel.text = ""
         }
       }
     }
@@ -101,6 +107,8 @@ class RequestViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    productTextField.enabled = false
     
     let pickerView = UIPickerView()
     pickerView.delegate = self
@@ -154,7 +162,9 @@ class RequestViewController: UIViewController {
         if filteredEvents.count != 0 {
           print("c")
           let event = filteredEvents[0]
-          self.eventNameLabel.text = event.title
+          let startDateFormat = NSDateFormatter()
+          startDateFormat.dateFormat = "hh:mm"
+          navigationItem.title = "\(event.title) (\(startDateFormat.stringFromDate(event.startDate)))"
           if let locationString = event.location where locationString != "" {
             print("d")
             CLGeocoder().geocodeAddressString(locationString) { placemarks, error in

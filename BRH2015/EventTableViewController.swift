@@ -109,4 +109,8 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             
         }
     }
+  
+  @IBAction func unwindToMain(sender: UIStoryboardSegue) {
+    
+  }
 }
