@@ -78,11 +78,11 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if events[indexPath.row].calendar.title == "Uber" {
-            self.performSegueWithIdentifier("EventToRequest", sender: self)
+            self.performSegueWithIdentifier("EventToRequest", sender: indexPath)
         } else {
-            self.performSegueWithIdentifier("EventToNew", sender: self)
+            self.performSegueWithIdentifier("EventToNew", sender: indexPath)
         }
     }
     
@@ -93,15 +93,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             var destVC = segue.destinationViewController as! NewEventViewController
             let row = (sender as! NSIndexPath).row
             let event = events[row]
-            destVC.titleField.text = event.title
-            destVC.locationField.text = event.location
             
             startDateFormat.dateFormat = "MM/dd hh:mm"
             endDateFormat.dateFormat = "MM/dd hh:mm"
-            destVC.startTimeField.text = startDateFormat.stringFromDate(event.startDate)
-            destVC.endTimeField.text = endDateFormat.stringFromDate(event.endDate)
-            
-            destVC.notesField.text = event.notes
         }
     }
 }
