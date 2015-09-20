@@ -87,10 +87,9 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segue.identifier ?? "" {
-        case "EventToRequest":
+        if segue.identifier == "EventToRequest" {
             var destVC = segue.destinationViewController as! RequestViewController
-        case "EventToNew":
+        } else if segue.identifier == "EventToNew" {
             var destVC = segue.destinationViewController as! NewEventViewController
             let row = (sender as! NSIndexPath).row
             let event = events[row]
@@ -103,8 +102,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             destVC.endTimeField.text = endDateFormat.stringFromDate(event.endDate)
             
             destVC.notesField.text = event.notes
-        default:
-            println("unrecognized identifier")
         }
     }
 }
