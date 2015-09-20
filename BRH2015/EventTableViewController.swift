@@ -18,8 +18,6 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
     var startDateFormat = NSDateFormatter()
     var endDateFormat = NSDateFormatter()
     
-    let uberLogo: UIImage = UIImage(named: "Uber Logo")!
-    
     @IBOutlet weak var eventTableView:UITableView!
     
     override func viewDidLoad() {
@@ -79,8 +77,12 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         cell.locationLabel.text = event.location
         cell.startLabel.text = startDateFormat.stringFromDate(event.startDate)
         cell.endLabel.text = endDateFormat.stringFromDate(event.endDate)
+        cell.vertLine.backgroundColor = UIColor(CGColor: event.calendar.CGColor)
+      
         if event.calendar.title == "Uber" {
-            cell.uberImage.image = uberLogo
+          cell.uberImage.hidden = false
+        } else {
+          cell.uberImage.hidden = true
         }
         return cell
     }
@@ -104,11 +106,18 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
             destVC.localNotif = notif
         } else if segue.identifier == "EventToNew" {
             var destVC = segue.destinationViewController as! NewEventViewController
-            let event = sender as! EKEvent
+          if let sender = sender as? EKEvent {
+            let event = sender
             destVC.event = event
+          }
+          
             
         }
     }
+  
+  @IBAction func newNote(sender: UIBarButtonItem) {
+    performSegueWithIdentifier("EventToNew", sender: sender)
+  }
   
   @IBAction func unwindToMain(sender: UIStoryboardSegue) {
     

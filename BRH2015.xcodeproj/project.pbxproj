@@ -29,6 +29,7 @@
 		95561EEA1BACF5D2007007F2 /* BRH2015Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95561EE91BACF5D2007007F2 /* BRH2015Tests.swift */; };
 		9580F40A1BAE5A000016209D /* AutocompleteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9580F4091BAE5A000016209D /* AutocompleteOverlayView.swift */; };
 		9580F40C1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9580F40B1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift */; };
+		958204F31BAEA7370003015E /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958204F21BAEA7370003015E /* PlaceholderTextView.swift */; };
 		95E129981BAD4F83001D57B2 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E129961BAD4F83001D57B2 /* EventTableViewController.swift */; };
 		95E129991BAD4F83001D57B2 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E129971BAD4F83001D57B2 /* NewEventViewController.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 		95561EE91BACF5D2007007F2 /* BRH2015Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRH2015Tests.swift; sourceTree = "<group>"; };
 		9580F4091BAE5A000016209D /* AutocompleteOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteOverlayView.swift; sourceTree = "<group>"; };
 		9580F40B1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteOverlayTableViewController.swift; sourceTree = "<group>"; };
+		958204F21BAEA7370003015E /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		95E129961BAD4F83001D57B2 /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		95E129971BAD4F83001D57B2 /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		E9B1F80F103C6AF0CB6EC8CD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 				9580F4091BAE5A000016209D /* AutocompleteOverlayView.swift */,
 				95561ED31BACF5D2007007F2 /* AppDelegate.swift */,
 				9580F40B1BAE5BB20016209D /* AutocompleteOverlayTableViewController.swift */,
+				958204F21BAEA7370003015E /* PlaceholderTextView.swift */,
 				953C1D031BAD59F7002C8079 /* DataManager.swift */,
 				953C1D021BAD58E3002C8079 /* alamofire */,
 				95561ED51BACF5D2007007F2 /* ViewController.swift */,
@@ -370,6 +373,7 @@
 				95561ED41BACF5D2007007F2 /* AppDelegate.swift in Sources */,
 				222D25E01BADED6E00B34468 /* EventTableViewCell.swift in Sources */,
 				9580F40A1BAE5A000016209D /* AutocompleteOverlayView.swift in Sources */,
+				958204F31BAEA7370003015E /* PlaceholderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

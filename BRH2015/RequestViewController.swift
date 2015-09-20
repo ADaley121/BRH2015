@@ -18,11 +18,11 @@ class RequestViewController: UIViewController {
   
   @IBOutlet weak var timeLabel: UILabel!
   
-  @IBOutlet weak var eventNameLabel: UILabel!
-  
   @IBOutlet weak var productTextField: UITextField!
   
   @IBOutlet weak var locationButton: UIButton!
+  
+  @IBOutlet weak var makeRequestButton: UIButton!
   
   var localNotif: UILocalNotification!
   
@@ -107,6 +107,14 @@ class RequestViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    timeLabel.text = "?"
+    priceLabel.text = "?"
+    
+    makeRequestButton.layer.cornerRadius = 5.0
+    makeRequestButton.layer.borderColor = UIColor.blackColor().CGColor
+    makeRequestButton.layer.borderWidth = 1.0
+    makeRequestButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
     
     productTextField.enabled = false
     
