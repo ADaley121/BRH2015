@@ -155,29 +155,31 @@ class RequestViewController: UIViewController {
         }
       } as! [EKCalendar]
       let predicate = eventStore.predicateForEventsWithStartDate(NSDate(timeInterval: -600, sinceDate: NSDate()), endDate: NSDate(timeIntervalSinceNow: 86400), calendars: filteredCalendars)
-      var events = eventStore.eventsMatchingPredicate(predicate) as! [EKEvent]
-      events = events.filter { $0.eventIdentifier == eventID }
-      if events.count != 0 {
-        let event = events[0]
-        self.eventNameLabel.text = event.title
-        if let locationString = event.location where locationString != "" {
-          CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
-            if let placemarks = placemarks as? [CLPlacemark] where !placemarks.isEmpty {
-              println(placemarks)
-              self.gmsmarker = GMSMarker(position: placemarks[0].location.coordinate)
-              self.gmsmarker!.map = self.mapView
-              if let userLocation = self.userLocation {
-                let bounds = GMSCoordinateBounds(coordinate: self.gmsmarker!.position, coordinate: userLocation.coordinate)
-                self.mapView.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
-                self.mapView.moveCamera(GMSCameraUpdate.fitBounds(bounds))
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "both locations", object: nil))
-              } else {
-                self.mapView.camera = GMSCameraPosition(target: self.gmsmarker!.position, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
+      if let events = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
+        let filteredEvents = events.filter { $0.eventIdentifier == eventID }
+        if filteredEvents.count != 0 {
+          let event = filteredEvents[0]
+          self.eventNameLabel.text = event.title
+          if let locationString = event.location where locationString != "" {
+            CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
+              if let placemarks = placemarks as? [CLPlacemark] where !placemarks.isEmpty {
+                println(placemarks)
+                self.gmsmarker = GMSMarker(position: placemarks[0].location.coordinate)
+                self.gmsmarker!.map = self.mapView
+                if let userLocation = self.userLocation {
+                  let bounds = GMSCoordinateBounds(coordinate: self.gmsmarker!.position, coordinate: userLocation.coordinate)
+                  self.mapView.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
+                  self.mapView.moveCamera(GMSCameraUpdate.fitBounds(bounds))
+                  NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "both locations", object: nil))
+                } else {
+                  self.mapView.camera = GMSCameraPosition(target: self.gmsmarker!.position, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
+                }
               }
             }
           }
         }
       }
+      
     }
   }
   
