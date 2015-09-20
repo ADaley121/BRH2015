@@ -1,3 +1,75 @@
+<?php
+session_start();
+include ("includes/password.php");
+include("includes/common.php");
+include ("includes/sendemail.php");
+include("includes/register_include.php");
+include("includes/config.php");
+	if(isset($_POST["Signup"])) {
+		$error_message = "";
+		$mysqli = open_mysqli();
+		$username = transformPOST($_POST["email"]);
+		$firstname = transformPOST($_POST["firstname"]);
+		$lastname = transformPOST($_POST["lastname"]);
+		$password = $_POST["password"];
+		$passwordConfirm = $_POST["password1"];
+		$phonenumber = transformPOST($_POST["phonenumber"]);
+		$phonetest = isValidPhone($phonenumber);
+		if(empty($username)){
+			$error_message .= 'You forgot your email. <br />';
+		}
+		if(empty($password)){
+			$error_message .= 'You forgot your password. <br />';
+		}
+		if(empty($passwordConfirm)){
+			$error_message .= 'You must confirm your password. <br />';
+		}
+		if($password!=$passwordConfirm){
+			$error_message .= 'Passwords do not match. <br />';
+		}
+		if(empty($firstname)){
+			$error_message .= 'You forgot your first name. <br />';
+		}
+		if(empty($lastname)){
+			$error_message .= 'You forgot your last name. <br />';
+		}
+		if(empty($phonenumber)){
+			$error_message .= 'You forgot your phone number. <br />';
+		}
+		if(!$phonetest){
+			$error_message .= 'Invalid phone number. <br />';
+		}
+		if (!filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL) || !strpos($username, "@cornell.edu")) {
+			$error_message .= 'Invalid Cornell email. <br />';
+		}
+		$result = $mysqli->query("SELECT * FROM Users WHERE username = '$username'");
+		if($result->num_rows > 0) {
+			$error_message .= 'Email already registered. <br />';
+		}
+		if($error_message == ""){
+            $username = strtolower($username);
+			$passwordhash = password_hash($password,PASSWORD_BCRYPT);
+			$userhash = password_hash(mcrypt_create_iv(10, MCRYPT_DEV_RANDOM),PASSWORD_BCRYPT);
+			$add = $mysqli->query("INSERT INTO Users (username,passwordHash,firstName,lastName,".
+				"telephone,active,verifyHash,hashExpiration) VALUES ('$username','$passwordhash','$firstname','$lastname','$phonenumber',0,'$userhash',DATE_ADD(NOW(),INTERVAL 1 DAY))");
+			if($add){
+				if(send_email($firstname,$username,$userhash)){
+					$_SESSION["username"] = $username;
+					$_SESSION["firstname"] = $firstname;
+					$_SESSION["userhash"] = $userhash;
+					header('Location: activation.php');
+				}else{
+					$error_message .= 'Failed to send confirmation email. <br />';
+				}
+			}
+			else{
+				$error_message .= 'Failed to add new user. <br />';										
+			}
+		}
+	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
