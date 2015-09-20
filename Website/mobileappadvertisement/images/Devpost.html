@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://devpost.com/software/reminderrides/edit -->
+<html lang="en" class=" js flexbox canvas canvastext no-touch postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache filereader" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraphprotocol.org/schema/" itemscope="itemscope" itemtype="http://schema.org/WebPage"><!--<![endif]--><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# challengepost: http://ogp.me/ns/fb/challengepost#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript" src="./Devpost_files/f9082fa052"></script><script src="./Devpost_files/nr-686.min.js"></script><script type="text/javascript" async="" src="./Devpost_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./Devpost_files/ga.js"></script><script type="text/javascript" async="" src="./Devpost_files/mixpanel-2.2.min.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"f9082fa052","applicationID":"7341974","transactionName":"IQpdERFeXFVVRhpbCw8AHBYMV0ROUUZQQEsHAVoR","queueTime":1,"applicationTime":284,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-686.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o?o:n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({QJf3ax:[function(e,n){function t(e){function n(n,t,a){e&&e(n,t,a),a||(a={});for(var u=c(n),f=u.length,s=i(a,o,r),p=0;f>p;p++)u[p].apply(s,t);return s}function a(e,n){f[e]=c(e).concat(n)}function c(e){return f[e]||[]}function u(){return t(n)}var f={};return{on:a,emit:n,create:u,listeners:c,_events:f}}function r(){return{}}var o="nr@context",i=e("gos");n.exports=t()},{gos:"7eSDFh"}],ee:[function(e,n){n.exports=e("QJf3ax")},{}],3:[function(e,n){function t(e){return function(){r(e,[(new Date).getTime()].concat(i(arguments)))}}var r=e("handle"),o=e(1),i=e(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(e,n){window.NREUM[n]=t("api-"+n)}),n.exports=window.NREUM},{1:12,2:13,handle:"D5DuLP"}],gos:[function(e,n){n.exports=e("7eSDFh")},{}],"7eSDFh":[function(e,n){function t(e,n,t){if(r.call(e,n))return e[n];var o=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return e[n]=o,o}var r=Object.prototype.hasOwnProperty;n.exports=t},{}],D5DuLP:[function(e,n){function t(e,n,t){return r.listeners(e).length?r.emit(e,n,t):void(r.q&&(r.q[e]||(r.q[e]=[]),r.q[e].push(n)))}var r=e("ee").create();n.exports=t,t.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(e,n){n.exports=e("D5DuLP")},{}],XL7HBI:[function(e,n){function t(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:i(e,o,function(){return r++})}var r=1,o="nr@id",i=e("gos");n.exports=t},{gos:"7eSDFh"}],id:[function(e,n){n.exports=e("XL7HBI")},{}],G9z0Bl:[function(e,n){function t(){var e=d.info=NREUM.info,n=f.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&n){c(p,function(n,t){n in e||(e[n]=t)});var t="https"===s.split(":")[0]||e.sslForHttp;d.proto=t?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=d.proto+e.agent,n.parentNode.insertBefore(r,n)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=e("handle"),c=e(1),u=window,f=u.document;e(2);var s=(""+location).split("?")[0],p={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-686.min.js"},d=n.exports={offset:i(),origin:s,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),u.addEventListener("load",t,!1)):(f.attachEvent("onreadystatechange",r),u.attachEvent("onload",t)),a("mark",["firstbyte",i()])},{1:12,2:3,handle:"D5DuLP"}],loader:[function(e,n){n.exports=e("G9z0Bl")},{}],12:[function(e,n){function t(e,n){var t=[],o="",i=0;for(o in e)r.call(e,o)&&(t[i]=n(o,e[o]),i+=1);return t}var r=Object.prototype.hasOwnProperty;n.exports=t},{}],13:[function(e,n){function t(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(0>o?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=t},{}]},{},["G9z0Bl"]);</script>
+    <meta name="viewport" content="width=device-width">
+    <title>Devpost</title>
+
+    <meta name="description" content="Devpost is the best place to showcase your software projects, connect with other hackers, and win prizes at hackathons.">
+<meta property="fb:app_id" content="115745995110194">
+<meta property="og:title" content="Devpost - Hackathons, App Contests, and Hackers">
+<meta property="og:description" content="Devpost is the best place to showcase your software projects, connect with other hackers, and win prizes at hackathons.">
+<meta property="og:type" content="challengepost:website">
+<meta property="og:site_name" content="Devpost - Hackathons, App Contests, and Hackers">
+<meta property="og:image" content="http://devpost0.assetspost.com/assets/shared/devpost_social_icon_200_200-7b823e9bb545df78675e749bcb8b15ed.jpg">
+<meta property="og:url" content="http://devpost.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Devposthacks">
+<meta name="twitter:title" content="Devpost - Hackathons, App Contests, and Hackers">
+<meta name="twitter:description" content="Devpost is the best place to showcase your software projects, connect with other hackers, and win prizes at hackathons.">
+<meta name="twitter:image:src" content="http://devpost0.assetspost.com/assets/shared/devpost_social_icon_wide-e3229bc621aacf88df939bc9dde9e2cf.jpg">
+<meta name="twitter:domain" content="devpost.com">
+<meta name="twitter:url" content="http://devpost.com/">
+<meta name="twitter:creator" content="@Devposthacks">
+<meta itemprop="name" content="Devpost - Hackathons, App Contests, and Hackers">
+<meta itemprop="description" content="Devpost is the best place to showcase your software projects, connect with other hackers, and win prizes at hackathons.">
+<meta itemprop="image" content="//devpost1.assetspost.com/assets/shared/devpost_social_icon-c58b1e7e9a690be35641fe1608647048.jpg">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="UDnoLoiF0SK2RaEIvNNv1M0vpqM5m1V7Es79rDBTSa6/+guCbcXPZk8s2+BnMAMBsDPLGUWFIKKkhg/V4g0dAw==">
+    
+
+    <!--[if gt IE 7]><!-->
+    <link rel="stylesheet" media="screen" href="./Devpost_files/reimagine2-2bb39e864ed4df969d339eb965bcd8f4.css">
+    <link rel="stylesheet" media="screen" href="./Devpost_files/home_application-218f300ac2c55ad3dfc7787097643663.css">
+    
+    <script src="./Devpost_files/modernizr-bef57869320b416d48fb2c5087d5e793.js"></script>
+    <!--<![endif]-->
+
+    <link href="https://plus.google.com/100989403125217127946" rel="publisher">
+  <style type="text/css"></style><meta class="foundation-mq-small"><meta class="foundation-mq-medium"><meta class="foundation-mq-large"><style></style><style type="text/css"></style><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+
+  <body id="body-softwares" class="foundation-grid action-edit controller-softwares engine-home placeholder"><div id="StayFocusd-infobar" style="display: none; top: 700px;">
+    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
+    <span id="StayFocusd-infobar-msg"></span>
+    <span id="StayFocusd-infobar-links">
+        <a id="StayFocusd-infobar-never-show">hide forever</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a id="StayFocusd-infobar-hide">hide once</a>
+    </span>
+</div>
+
+    <!--googleoff: anchor-->
+
+<!--[if lte IE 9 ]>
+  <div id="unsupported_browser_version" class="persistent_message alert-box alert">
+    <p>
+      We've detected that you are using an unsupported browser.  Please
+      <a href="http://browsehappy.com/">upgrade your browser</a>
+      to Internet Explorer 10 or higher.
+    </p>
+  </div>
+<![endif]-->
+
+
+<!--googleon: anchor-->
+
+
+
+    
+    
+    
+  <header id="global-nav">
+    <div class="contain-to-grid">
+      <nav class="top-bar" data-topbar="" role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <span id="logo">
+              <a href="http://devpost.com/">
+                <img alt="Devpost" src="./Devpost_files/devpost_logo-646bdf6ac6663230947a952f8d354cad.svg">
+</a>            </span>
+
+            <span id="formerly-cp" class="tiny">
+  <a href="http://blog.devpost.com/post/125253916364/challengepost-is-now-devpost">
+    formerly
+    <img height="15" width="100" alt="Devpost" src="./Devpost_files/ChallengePost-logo-RGB-26f7891faa2b80412cef1078cd94a956.svg">
+  </a>
+</span>
+
+          </li>
+
+          <li class="toggle-topbar menu-icon" tabindex="0">
+            <a href="http://devpost.com/software/reminderrides/edit#" aria-labelledby="global-nav-toggle-user-menu">
+              <span></span>
+              <span class="visually-hidden" id="global-nav-toggle-user-menu">Toggles the global navigation menu</span>
+            </a>
+          </li>
+        </ul>
+
+        
+      <section class="top-bar-section">
+          <ul class="left">
+            <li class="divider"></li>
+<li>
+  <a class="main-link" data-role="explore" href="http://devpost.com/software">
+    Explore projects
+</a></li>
+<li class="divider"></li>
+<li>
+  <a class="main-link" data-role="discover" href="http://devpost.com/hackathons">
+    Find a hackathon
+</a></li>
+<li class="divider"></li>
+
+          </ul>
+
+            <ul class="right logged-in">
+  <li class="hide-for-small" data-region="notification-bell">
+  <a data-notification="bell" data-dropdown="notification-dd" id="notification-button" href="http://devpost.com/notifications"><i class="ss-icon ss-notifications  disabled"></i>
+
+&nbsp;
+</a>
+</li>
+
+
+  <li class="has-dropdown not-click" id="global-nav-user-dropdown">
+    <a class="user" id="global-nav-screen-name" aria-label="Access your account menu" href="http://devpost.com/Breadamonium?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav">
+      <img alt="Breadamonium" class="user-avatar hide-for-small user-photo gravatar_image image-replacement" src="./Devpost_files/019de863836321960ad5d06fa1f0aa4a">
+      Breadamonium's Portfolio
+</a>
+    <ul class="dropdown"><li class="title back js-generated"><h5><a href="http://devpost.com/software/reminderrides/edit#">Back</a></h5></li>
+      <li class="divider"></li>
+
+      <li class="hide-for-medium-up">
+        <a href="http://devpost.com/Breadamonium?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav">
+          Breadamonium's Portfolio
+</a>      </li>
+      <li class="hide-for-medium-up divider"></li>
+
+
+      <li>
+        <a href="http://devpost.com/find-friends/facebook">Find friends</a>
+      </li>
+      <li class="divider"></li>
+
+
+      <li id="global-nav-user-settings">
+        <a href="https://devpost.com/settings">Settings</a>
+      </li>
+      <li class="divider"></li>
+
+      <li id="global-nav-user-log-out" data-global-nav-user="log-out">
+        <a href="https://secure.devpost.com/users/logout">Log out</a>
+      </li>
+      <li class="divider"></li>
+
+
+
+    </ul>
+  </li>
+</ul>
+
+        </section></nav>
+    </div>
+  </header>
+
+    <div id="notification-dd" class="f-dropdown medium" data-dropdown-content="" data-notification="dropdown">
+  <header>
+    <h6 class="text-center">Notifications</h6>
+  </header>
+  <div data-region="dropdown-feed">
+    <p class="text-center loading">Loading...</p>
+  </div>
+  <footer class="text-center" data-region="footer">
+  </footer>
+</div>
+
+
+
+
+    <section id="container">
+        <header class="page-header" id="software-form-header">
+    <div class="row">
+      <div class="small-12 columns">
+
+        <h1>Post a new project</h1>
+
+        <p class="software-header-legalese">
+          Please respect our <a target="_blank" href="http://devpost.com/pages/guidelines">community guidelines</a>.
+        </p>
+      </div>
+    </div>
+  </header>
+
+      
+  
+
+
+<div class="content-section">
+  <form id="software_editor" data-role="software-editor" data-persist="garlic" novalidate="novalidate" class="simple_form edit_software" action="http://devpost.com/software/reminderrides" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓" class="garlic-auto-save"><input type="hidden" name="_method" value="patch" class="garlic-auto-save"><input type="hidden" name="authenticity_token" value="UDnoLoiF0SK2RaEIvNNv1M0vpqM5m1V7Es79rDBTSa6/+guCbcXPZk8s2+BnMAMBsDPLGUWFIKKkhg/V4g0dAw==" class="garlic-auto-save">
+  <input type="hidden" name="timestamp" id="timestamp" value="2015-09-20 06:12:42 -0400" class="garlic-auto-save">
+  <div class="row align-bottom align-baseline-small">
+  <div class="small-10 large-11 columns stretch-input align-baseline-small
+    " id="software_name_input">
+
+    <label class="string required control-label" for="software_name"><abbr title="required">*</abbr> I'm developing a project called</label>
+
+    
+
+    <input class="string required inline-input garlic-auto-save" autofocus="autofocus" placeholder="Project name" type="text" value="ReminderRides" name="software[name]" id="software_name">
+  </div><span class="counter small-2 large-1 columns">40</span>
+</div>
+
+  <div class="row align-bottom align-baseline-small">
+  <div class="small-10 large-11 columns stretch-input align-baseline-small
+    " id="software_tagline_input">
+
+    <label class="text required control-label" for="software_tagline"><abbr title="required">*</abbr> Here’s the elevator pitch</label>
+
+    
+
+    <input class="string optional inline-input garlic-auto-save" placeholder="A short tagline for the project" type="text" name="software[tagline]" id="software_tagline">
+  </div><span class="counter small-2 large-1 columns">13</span>
+</div>
+
+  <div class="row">
+  <div class="small-12 large-11 columns stretch-input align-center-small" id="software_tags">
+    <label class="string optional control-label" for="software_tag_list">It's built with</label>
+
+    <div class="select2-container select2-container-multi inline-input garlic-auto-save" id="s2id_software_tag_list"><ul class="select2-choices">  <li class="select2-search-choice">    <div><span class="label">swift</span></div>    <a href="http://devpost.com/software/reminderrides/edit#" class="select2-search-choice-close" tabindex="-1"></a></li><li class="select2-search-choice">    <div><span class="label">uberapi</span></div>    <a href="http://devpost.com/software/reminderrides/edit#" class="select2-search-choice-close" tabindex="-1"></a></li><li class="select2-search-choice">    <div><span class="label">html5</span></div>    <a href="http://devpost.com/software/reminderrides/edit#" class="select2-search-choice-close" tabindex="-1"></a></li><li class="select2-search-field">    <label for="s2id_autogen1" class="select2-offscreen">It's built with</label>    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input garlic-auto-save" id="s2id_autogen1" placeholder="" style="width: 20px;" aria-activedescendant="select2-result-label-125">  </li></ul></div><input as="string" label="false" placeholder="Languages, APIs, hardware, hosts, libraries, UI Kits, and frameworks" wrapper="false" error="false" value="" class="inline-input select2-offscreen garlic-auto-save" type="text" name="software[tag_list]" id="software_tag_list" tabindex="-1">
+  </div>
+</div>
+
+  <div class="row">
+  <div class="large-11 small-12 columns software_members">
+    <div class="input stretch-input align-baseline-small" data-role="invite-form"><label for="email">The team</label>
+
+<span class=" inline-input align-baseline-small">
+  
+
+  <span class="attachable">
+    <input id="email" name="email" placeholder="Add team members via email – someone@example.com" type="email" value="" class="attachable-base">
+
+    <button type="button" class="button flat attach-on-right">
+      Send invite
+    </button>
+  </span>
+</span>
+</div>
+
+    <ul data-role="software-members" class="data-list software-members-list">
+    <li id="software_member_100885"><div class="row collapse clearfix">
+  <div class="large-6 columns">
+    <a class="user-profile-link" href="http://devpost.com/Breadamonium"><img alt="Breadamonium" class="user-photo gravatar_image image-replacement" title="Breadamonium" src="./Devpost_files/019de863836321960ad5d06fa1f0aa4a(1)"></a>
+    <strong>
+      
+        <a class="user-profile-link" href="http://devpost.com/Breadamonium">Breadamonium</a>
+      
+    </strong>
+
+    
+      <span class="status added you">(that's you!)</span>
+    
+  </div>
+
+  <div class="large-4 small-8 columns">
+    
+  </div>
+
+  <div class="large-2 small-4 columns text-center status">
+    
+  </div>
+</div>
+</li><li id="software_member_100892"><div class="row collapse clearfix">
+  <div class="large-6 columns">
+    <img class="user-photo" src="./Devpost_files/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3.png" alt="No avatar 100">
+    <strong>
+      
+        jlh457@cornell.edu
+      
+    </strong>
+
+    
+  </div>
+
+  <div class="large-4 small-8 columns">
+    
+
+      <span class="status invited">
+        invite sent, unconfirmed
+      </span>
+
+    
+  </div>
+
+  <div class="large-2 small-4 columns text-center status">
+    
+      <a href="http://devpost.com/software/reminderrides/edit#" rel="nofollow" data-role="delete">
+        Remove
+      </a>
+    
+  </div>
+</div>
+</li><li id="software_member_100894"><div class="row collapse clearfix">
+  <div class="large-6 columns">
+    <img class="user-photo" src="./Devpost_files/no-avatar-100-17cf519ce6f8e4e0e83758ea09fc5eb3(1).png" alt="No avatar 100">
+    <strong>
+      
+        ajd93@cornell.edu
+      
+    </strong>
+
+    
+  </div>
+
+  <div class="large-4 small-8 columns">
+    
+
+      <span class="status invited">
+        invite sent, unconfirmed
+      </span>
+
+    
+  </div>
+
+  <div class="large-2 small-4 columns text-center status">
+    
+      <a href="http://devpost.com/software/reminderrides/edit#" rel="nofollow" data-role="delete">
+        Remove
+      </a>
+    
+  </div>
+</div>
+</li></ul>
+  </div>
+</div>
+
+  <div class="input text optional software_description">
+  <div class="row">
+    <div class="small-12 columns">
+      <label class="text required control-label" for="software_description"><abbr title="required">*</abbr> Here's the whole story</label>
+
+      
+    </div>
+  </div>
+
+  <div class="row align-stretch-small">
+    <div class="small-12 large-9 columns">
+      <textarea data-editable-template="## Inspiration
+
+## What it does
+
+## How I built it
+
+## Challenges I ran into
+
+## Accomplishments that I&#39;m proud of
+
+## What I learned
+
+## What&#39;s next for ReminderRides
+" class="text optional garlic-auto-save" placeholder="## Inspiration...
+" name="software[description]" id="software_description"></textarea>
+    </div>
+
+    <div class="small-12 large-3 columns">
+      <div class="panel" style="-ms-flex: 0 1 auto;">
+        <p>
+          Format your description with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>. Here are some tips:
+        </p>
+
+        <pre>## Headline
+**bold**
+_ italics _
+[link](http://foo.bar)
+![Alt text](/path/to/img.jpg)
+        </pre>
+
+        <p>
+          Get fancy with syntax highlighting:
+        </p>
+
+        <pre>```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row software_urls align-baseline-small">
+  <div class="small-12 large-9 columns stretch-input align-baseline-small">
+    <label class="url optional control-label" for="software_urls">Try it out</label>
+
+    <div class="inline-input immutable" data-role="software-url-fields">
+      
+        <div class="nested-fields align-baseline-small
+  ">
+  
+
+  <div class="attachable align-baseline">
+    <input class="string url required attachable-base garlic-auto-save" placeholder="URL for demo site, app store listing, GitHub repo, etc." type="url" name="software[urls_attributes][0][url]" id="software_urls_attributes_0_url">
+    <input type="hidden" name="software[urls_attributes][0][_destroy]" id="software_urls_attributes_0__destroy" value="false" class="garlic-auto-save"><a class="ss-delete ss-icon attach-on-right remove_fields dynamic" href="http://devpost.com/software/reminderrides/edit#">
+</a>  </div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="small-12 large-3 columns">
+    <span class="links">
+      <a data-association-insertion-node="[data-role=software-url-fields]" data-association-insertion-method="append" class="all-caps small add_fields" data-association="url" data-associations="urls" data-association-insertion-template="&lt;div class=&quot;nested-fields align-baseline-small
+  &quot;&gt;
+  
+
+  &lt;div class=&quot;attachable align-baseline&quot;&gt;
+    &lt;input class=&quot;string url required attachable-base&quot; placeholder=&quot;URL for demo site, app store listing, GitHub repo, etc.&quot; type=&quot;url&quot; name=&quot;software[urls_attributes][new_urls][url]&quot; id=&quot;software_urls_attributes_new_urls_url&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;software[urls_attributes][new_urls][_destroy]&quot; id=&quot;software_urls_attributes_new_urls__destroy&quot; value=&quot;false&quot; /&gt;&lt;a class=&quot;ss-delete ss-icon attach-on-right remove_fields dynamic&quot; href=&quot;#&quot;&gt;
+&lt;/a&gt;  &lt;/div&gt;
+&lt;/div&gt;
+" href="http://devpost.com/software/reminderrides/edit#">
+        add another link
+</a>    </span>
+  </div>
+</div>
+
+  <div class="row">
+  <div class="small-12 large-5 columns">
+    <div class="input image-gallery-container clearfix" data-image-gallery-container="">
+      <label for="software_photo_data">
+        Image gallery
+</label>
+      <p class="hint">
+        JPG, PNG or GIF format, 5 MB max file size.<br>For best results, use a 3:2 ratio.
+      </p>
+
+      <div class="instructions drag-drop align-center flex-column justify-center">
+        <span class="fileinput-button">
+          <label class="button small grey radius" for="software_photo_data">
+            Choose files
+          </label>
+
+          <input id="software_photo_data" class="hide garlic-auto-save" name="software_photo[data]" type="file" data-image-gallery-choose-file="" multiple="">
+        </span>
+
+        <span class="drag-drop hide">
+          <p>or drag and drop</p>
+        </span>
+
+        <div data-image-gallery-dropzone="" class="panel dropzone hide" style="display: none;">
+          <h2>Drop files here</h2>
+        </div>
+      </div>
+
+      <ul data-image-gallery-list="" class="image-gallery-list no-bullet ui-sortable">
+        
+      <li class="panel" data-id="ids_292418">
+  <input name="software[photo_ids][]" type="hidden" value="292418">
+  <strong>app1.jpg</strong>
+  (<span>43.1 KB</span>)
+  
+  <img src="./Devpost_files/indicator-ajax-spinner.gif" class="loading">
+<a class="ss-icon ss-delete" href="http://devpost.com/software_photos/292418" data-method="delete"></a></li><li class="panel" data-id="ids_292419">
+  <input name="software[photo_ids][]" type="hidden" value="292419">
+  <strong>app2.jpg</strong>
+  (<span>38.7 KB</span>)
+  
+  <img src="./Devpost_files/indicator-ajax-spinner.gif" class="loading">
+<a class="ss-icon ss-delete" href="http://devpost.com/software_photos/292419" data-method="delete"></a></li><li class="panel" data-id="ids_292420">
+  <input name="software[photo_ids][]" type="hidden" value="292420">
+  <strong>app3.jpg</strong>
+  (<span>60.6 KB</span>)
+  
+  <img src="./Devpost_files/indicator-ajax-spinner.gif" class="loading">
+<a class="ss-icon ss-delete" href="http://devpost.com/software_photos/292420" data-method="delete"></a></li><li class="panel" data-id="ids_292421">
+  <input name="software[photo_ids][]" type="hidden" value="292421">
+  <strong>app4.jpg</strong>
+  (<span>42.1 KB</span>)
+  
+  <img src="./Devpost_files/indicator-ajax-spinner.gif" class="loading">
+<a class="ss-icon ss-delete" href="http://devpost.com/software_photos/292421" data-method="delete"></a></li></ul>
+
+    </div>
+  </div>
+
+  <div class="small-12 large-1 columns">&nbsp;</div>
+
+  <div class="small-12 large-3 columns">
+    <label for="software_thumbnail_data">Thumbnail image</label>
+
+    <p class="hint">
+      JPG, PNG or GIF format, 5 MB max file size.<br>For best results, use a 3:2 ratio.
+    </p>
+
+    <div data-thumbnail="container">
+      <div class="gallery-item">
+        <div class="software-entry gallery-entry fade visible">
+          <figure class="text-center" data-thumbnail="image-preview">
+
+            <img data-thumbnail="image" data-thumbnail-fallback="//devpost3.assetspost.com/assets/defaults/thumbnail-placeholder-42bcab8d8178b413922ae2877d8b0868.gif" id="software-thumbnail-image" src="./Devpost_files/Logo.PNG" alt="Thumbnail placeholder" class="">
+
+          </figure>
+
+          <input class="hide garlic-auto-save" accept="image/jpeg,image/jpg,image/pjpeg,image/png,image/x-png,image/gif" data-photo-upload-action="/upload/58784/photos" id="software-thumbnail-file-input" type="file" name="photo[data]">
+
+          <div class="software-entry-name entry-body" data-thumbnail="attributes">
+            <h5>
+              <span data-thumbnail="name">Reminder Rides</span>
+              <span class="paragraph-end"></span>
+            </h5>
+
+            <p class="small tagline">
+              <span data-thumbnail="tagline">Ever wanted to schedule an Uber ride in advance? Now you can! Just set up an event in your calendar app!</span>
+              <span class="paragraph-end"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div data-thumbnail="remove" id="software-thumbnail-remove">
+        <p class="small">
+          <label for="software-thumbnail-file-input" id="software-thumbnail-button">Change image</label>
+
+          <span class="software-thumbnail-remove-option right-small hide" data-thumbnail="keeping-message" style="display: inline;">
+            <label for="software_remove_thumbnail" class="software-thumbnail-remove">Remove</label>
+          </span>
+        </p>
+
+        <p class="small">
+          <span class="software-thumbnail-remove-option hide" data-thumbnail="removing-message" style="display: none;">
+            The thumbnail will be removed after you save.
+            <label for="software_remove_thumbnail"><a>undo</a></label>
+          </span>
+        </p>
+
+        <input name="software[remove_thumbnail]" type="hidden" value="no" class="garlic-auto-save"><input data-thumbnail="remove-checkbox" class="hide garlic-auto-save" type="checkbox" value="yes" name="software[remove_thumbnail]" id="software_remove_thumbnail">
+
+        <ul data-thumbnail="errors" id="software-form-thumbnail-errors"></ul>
+      </div>
+    </div>
+  </div>
+  <div class="columns"></div>
+</div>
+
+
+  <div class="row">
+  <div class="small-12 large-9 columns stretch-input align-baseline-small
+    ">
+    <label class="url optional control-label" for="software_video_url">Video demo</label>
+
+    
+
+    <input class="string url optional inline-input garlic-auto-save" placeholder="YouTube, Vimeo or Youku URL" type="url" name="software[video_url]" id="software_video_url">
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="form-actions-list">
+        <input type="submit" name="software_form_save_button" value="Save" class="button radius garlic-auto-save" id="software-save">
+
+        <br>
+
+        <a href="http://devpost.com/Breadamonium">Cancel</a>
+
+        <br>
+        <br>
+
+          <a class="right-small delete" data-confirm="Are you sure you want to remove this project from your portfolio? You can not undo." rel="nofollow" data-method="delete" href="http://devpost.com/software/reminderrides">Delete project</a>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" value="portfolio" name="software[creation_source]" id="software_creation_source" class="garlic-auto-save">
+
+  <input value="true" type="hidden" name="software[track_software_submitted]" id="software_track_software_submitted" class="garlic-auto-save">
+
+</form>
+<form data-image-gallery-form="true" class="new_software_photo" id="new_software_photo" enctype="multipart/form-data" action="http://devpost.com/software_photos" accept-charset="UTF-8" method="post" style="display: none;"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="UDnoLoiF0SK2RaEIvNNv1M0vpqM5m1V7Es79rDBTSa6/+guCbcXPZk8s2+BnMAMBsDPLGUWFIKKkhg/V4g0dAw==">
+  <input type="hidden" value="62195" name="software_photo[attachable_id]" id="software_photo_attachable_id">
+  <input type="file" name="software_photo[data]" id="software_photo_data">
+  <input type="submit" name="commit" value="Create Software photo">
+</form>
+
+
+</div>
+
+
+      
+    </section>
+
+    
+  <footer id="devpost-footer">
+  <div class="row">
+    <div class="large-8 small-9 columns">
+      <nav id="site-footer-primary-nav">
+        <ul class="">
+          <li><a href="http://post.devpost.com/">Devpost for Organizations</a></li>
+          <li><a href="http://info.devpost.com/about">About</a></li>
+          <li><a href="http://info.devpost.com/careers">Careers</a></li>
+          <li><a href="http://blog.devpost.com/">Blog</a></li>
+          <li><a href="http://info.devpost.com/contact">Contact</a></li>
+          <li><a href="http://help.devpost.com/">Help</a></li>
+        </ul>
+      </nav>
+
+      <nav id="site-footer-legal">
+        <ul class="">
+          <li>
+            <a href="http://nytm.org/made" rel="nofollow" target="_blank">
+              <small>Made with <i class="ss-icon ss-heart"></i> in NYC</small>
+            </a>
+          </li>
+          <li><a href="http://info.devpost.com/privacy"><small>Privacy</small></a></li>
+          <li><a href="http://info.devpost.com/terms"><small>Terms</small></a></li>
+          <li><a href="http://info.devpost.com/guidelines"><small>Community Guidelines</small></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="large-4 small-3 columns">
+      <ul class="social-links">
+        <li><a href="https://twitter.com/devposthacks" target="_blank" class="ss-icon ss-social-circle ss-twitter"></a></li>
+        <li><a href="https://www.facebook.com/devposthacks" target="_blank" class="ss-icon ss-social-circle ss-facebook"></a></li>
+        <li><a href="http://instagram.com/devposthacks" target="_blank" class="ss-icon ss-social-circle ss-instagram"></a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="./Devpost_files/reimagine2-855b18a08e74a1a9ea9309268739429a.js"></script>
+<script src="./Devpost_files/platform-ba7fdd57627a3a6a2dd9fd725a6aa9e3.js"></script>
+
+<script src="./Devpost_files/home_application-0b728aabcd2aec038be1775c017a2a02.js"></script>
+
+<script>
+  var _gaq = _gaq || [];
+
+  (function () {
+
+
+    _gaq.push(["cp._setDomainName","devpost.com"]);
+    _gaq.push(["cp._setAccount","UA-2233558-21"]);
+    _gaq.push(["cp._setAllowLinker",true]);
+    _gaq.push(["cp._require","inpage_linkid","//www.google-analytics.com/plugins/ga/inpage_linkid.js"]);
+
+    
+
+    _gaq.push(["cp._trackPageview"]);
+  })();
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  (function() {
+    mixpanel.identify("592344");
+    mixpanel.register({"ref_feature":"portfolio","ref_content":"BigRed//Hacks 2015 (2937)","ref_medium":"button"});
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+  CP.env.addRoutes({
+    follows_url: "http://devpost.com/follows",
+    search_softwares_url: "http://devpost.com/software/search",
+    new_software_url: "http://devpost.com/software/new",
+    notifications_url: "http://devpost.com/notifications",
+    api: {
+      users_url: "https://api.devpost.com/users"
+    }
+  })
+
+  new Reimagine2();
+
+  $(function onDocumentReady() {
+      CP.Home.softwareFormLiveThumbnail();
+
+  CP.Home.SoftwarePhotoUploader.setup(
+    $("[data-image-gallery-form]"),
+    $("[data-image-gallery-container]")
+  );
+
+  CP.SortableSorter.setup(
+    $("[data-image-gallery-list]"),
+    '/software_photos/positions?id=62195'
+  );
+  CP.TagTextField.setup($("#software_tag_list"), "http://devpost.com/tags");
+
+  CP.Home.SoftwareFormUrls.setup('[data-role=software-url-fields]');
+  CP.Home.VideoUrlValidator.setup('[data-role=software-url-fields]');
+
+  CP.Home.SoftwareForm.setup('form[data-role="software-editor"]', {
+    tagline_max_length: 117,
+    title_max_length: 54
+  });
+
+  CP.Home.SoftwareMembersApp.start("reminderrides");
+  CP.SendFormOnCommandEnter.setup($("#masqueradee"));
+  (function(inputs) {
+    if (typeof inputs.cp_autocomplete === "function") inputs.cp_autocomplete();
+    inputs.on('click', function(event) { return false; });
+  })($("#masqueradee"));
+var FollowButtonApp = new CP.FollowButtonApp({
+  user: {
+    id: 592344,
+    screen_name: "Breadamonium"
+  },
+  urls: {
+    register_url: "https://secure.devpost.com/users/register",
+    user_follows_url: "http://devpost.com/Breadamonium/follows"
+  }
+});
+
+FollowButtonApp.start();
+  var appOptions = {};
+
+  _.extend(appOptions, {
+    user: {
+      id: 592344,
+      display_name: "Breadamonium"
+    }
+  });
+
+  CP.Mn.app.start(appOptions);
+
+  });
+
+</script>
+
+<!--[if lt IE 9 ]>
+  <script type="text/javascript">
+    $(function onDocumentReady() {
+      CP.IE.Notifications.setup();
+    });
+  </script>
+<![endif]-->
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "http://devpost.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "http://devpost.com/software/search?query={query}",
+      "query-input": "name=query"
+    }
+}
+</script>
+
+<script src="./Devpost_files/oct.js" type="text/javascript"></script>
+<script type="text/javascript">twttr.conversion.trackPid('l6ngp', { tw_sale_amount: 0, tw_order_quantity: 0 });</script>
+<noscript>
+&lt;img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l6ngp&amp;p_id=Twitter&amp;tw_sale_amount=0&amp;tw_order_quantity=0" /&gt;
+&lt;img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l6ngp&amp;p_id=Twitter&amp;tw_sale_amount=0&amp;tw_order_quantity=0" /&gt;
+</noscript>
+
+
+
+<script type="text/javascript">try {mixpanel.track("Started Software Form", {"time":1442743962,"ip":" 172.31.55.196","distinct_id":"592344","step":"long form"});
+mixpanel.track("Logged In Pageview", {"time":1442743962,"ip":" 172.31.55.196","distinct_id":"592344","page_name":"home/softwares#edit","orgs":[]});} catch(err) {};</script>
+<span role="status" aria-live="polite" class="select2-hidden-accessible">html5</span><div class="select2-sizer" style="position: absolute; left: -10000px; top: -10000px; display: none; font-size: 16px; font-family: sans-serif; font-style: normal; font-weight: normal; letter-spacing: normal; text-transform: none; white-space: nowrap;"></div><div id="select2-drop-mask" class="select2-drop-mask" style="display: none;"></div><div class="select2-drop select2-drop-multi select2-display-none select2-drop-active" style="left: 501.906px; width: 933px; top: 526.375px; bottom: auto; display: none;">   <ul class="select2-results"></ul></div></body></html>
