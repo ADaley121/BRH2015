@@ -34,13 +34,6 @@ class RequestViewController: UIViewController {
   
   var products: [JSON]? {
     didSet {
-      let pickerView = UIPickerView()
-      pickerView.delegate = self
-      pickerView.dataSource = self
-      productTextField.inputView = pickerView
-      let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
-      toolbar.items = [UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), UIBarButtonItem(barButtonSystemItem: .Done, target: productTextField, action: "resignFirstResponder")]
-      productTextField.inputAccessoryView = toolbar
       if let products = products where products.count == 0 {
         if products.count == 0 {
           productTextField.text = "Sorry there are no available rides in your area"
@@ -109,6 +102,13 @@ class RequestViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let pickerView = UIPickerView()
+    pickerView.delegate = self
+    pickerView.dataSource = self
+    productTextField.inputView = pickerView
+    let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
+    toolbar.items = [UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), UIBarButtonItem(barButtonSystemItem: .Done, target: productTextField, action: "resignFirstResponder")]
+    productTextField.inputAccessoryView = toolbar
     productTextField.text = "Select a service"
     
     CLLocationManager().requestWhenInUseAuthorization()
@@ -135,9 +135,9 @@ class RequestViewController: UIViewController {
     dispatch_async(dispatch_get_main_queue(), {
       self.mapView.myLocationEnabled = true
     })
-    mapView.myLocationEnabled = true
-    
+    print("z")
     if let eventID = localNotif.userInfo?["event"] as? String {
+      print("a")
       let eventStore = EKEventStore()
       var calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent)
       let filteredCalendars = calendars.filter { calendar in
@@ -149,17 +149,21 @@ class RequestViewController: UIViewController {
       } as! [EKCalendar]
       let predicate = eventStore.predicateForEventsWithStartDate(NSDate(timeInterval: -600, sinceDate: NSDate()), endDate: NSDate(timeIntervalSinceNow: 86400), calendars: filteredCalendars)
       if let events = eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
+        print("b")
         let filteredEvents = events.filter { $0.eventIdentifier == eventID }
         if filteredEvents.count != 0 {
+          print("c")
           let event = filteredEvents[0]
           self.eventNameLabel.text = event.title
           if let locationString = event.location where locationString != "" {
+            print("d")
             CLGeocoder().geocodeAddressString(locationString) { placemarks, error in
               if let placemarks = placemarks as? [CLPlacemark] where !placemarks.isEmpty {
-                println(placemarks)
+                print("e")
                 self.gmsmarker = GMSMarker(position: placemarks[0].location.coordinate)
                 self.gmsmarker!.map = self.mapView
                 if let userLocation = self.userLocation {
+                  print("f")
                   let bounds = GMSCoordinateBounds(coordinate: self.gmsmarker!.position, coordinate: userLocation.coordinate)
                   self.mapView.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
                   self.mapView.moveCamera(GMSCameraUpdate.fitBounds(bounds))
@@ -180,11 +184,15 @@ class RequestViewController: UIViewController {
   }
   
   override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    print("g")
     if !firstLocationUpdate {
+      print("h")
       firstLocationUpdate = true
       if let location = change[NSKeyValueChangeNewKey] as? CLLocation {
+        print("i")
         userLocation = location
         if let gmsmarker = gmsmarker {
+          print("j")
           let bounds = GMSCoordinateBounds(coordinate: gmsmarker.position, coordinate: location.coordinate)
           mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
           mapView.moveCamera(GMSCameraUpdate.fitBounds(bounds))
@@ -193,7 +201,9 @@ class RequestViewController: UIViewController {
           mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
         }
         DataManager.sharedInstance.getProducts(self.userLocation!.coordinate.latitude, longitude: self.userLocation!.coordinate.longitude) { json, error in
+          print("k")
           if let json = json {
+            print("l")
             println(json)
             if json["products"] != nil {
               self.products = json["products"].arrayValue
@@ -211,6 +221,17 @@ class RequestViewController: UIViewController {
     overlayView.delegate = self
     overlayView.animateInto(view)
     overlayView.tableController.userLocation = userLocation
+  }
+  
+  @IBAction func makeRequest(sender: UIButton) {
+    if let userLocation = userLocation, gmsmarker = gmsmarker, selectedProduct = selectedProduct {
+      DataManager.sharedInstance.makeRequest(selectedProduct["product_id"].stringValue, start: (userLocation.coordinate.latitude, userLocation.coordinate.longitude), end: (userLocation.coordinate.latitude, userLocation.coordinate.longitude)) { result, error in
+        if let result = result {
+          UIAlertView(title: "Your request was made successfully", message: "Your uber will arrive shortly", delegate: nil, cancelButtonTitle: "Ok").show()
+          self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+      }
+    }
   }
   
 }
