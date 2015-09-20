@@ -78,4 +78,33 @@ class EventTableViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if events[indexPath.row].calendar.title == "Uber" {
+            self.performSegueWithIdentifier("EventToRequest", sender: self)
+        } else {
+            self.performSegueWithIdentifier("EventToNew", sender: self)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier ?? "" {
+        case "EventToRequest":
+            var destVC = segue.destinationViewController as! RequestViewController
+        case "EventToNew":
+            var destVC = segue.destinationViewController as! NewEventViewController
+            let row = (sender as! NSIndexPath).row
+            let event = events[row]
+            destVC.titleField.text = event.title
+            destVC.locationField.text = event.location
+            
+            startDateFormat.dateFormat = "MM/dd hh:mm"
+            endDateFormat.dateFormat = "MM/dd hh:mm"
+            destVC.startTimeField.text = startDateFormat.stringFromDate(event.startDate)
+            destVC.endTimeField.text = endDateFormat.stringFromDate(event.endDate)
+            
+            destVC.notesField.text = event.notes
+        default:
+            println("unrecognized identifier")
+        }
+    }
 }

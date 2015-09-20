@@ -25,8 +25,6 @@ class NewEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         startDateFormat.dateStyle = NSDateFormatterStyle.MediumStyle
         startDateFormat.timeStyle = NSDateFormatterStyle.MediumStyle
         startDateFormat.dateFormat = "MM/dd hh:mm"
