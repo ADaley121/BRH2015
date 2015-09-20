@@ -24,17 +24,7 @@ class RequestViewController: UIViewController {
   
   @IBOutlet weak var locationButton: UIButton!
   
-  var localNotif: UILocalNotification = {
-    let localNotifi = UILocalNotification()
-    localNotifi.fireDate = NSDate(timeInterval: -900, sinceDate: NSDate())
-    localNotifi.alertTitle = "HELLO happens in 15 minutes!"
-    localNotifi.alertBody = "Remember to book an uber to get you to the event!"
-    localNotifi.alertAction = "Ok"
-    localNotifi.userInfo = ["event": "EAA3388D-A8F7-4692-9E07-4C768EFC2788:613E7AB2-F802-4DCA-B745-34DCF07BE52A"]
-    localNotifi.soundName = UILocalNotificationDefaultSoundName
-    localNotifi.applicationIconBadgeNumber = 1
-    return localNotifi
-  }()
+  var localNotif: UILocalNotification!
   
   var gmsmarker: GMSMarker?
   
@@ -52,7 +42,11 @@ class RequestViewController: UIViewController {
       toolbar.items = [UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), UIBarButtonItem(barButtonSystemItem: .Done, target: productTextField, action: "resignFirstResponder")]
       productTextField.inputAccessoryView = toolbar
       if let products = products where products.count == 0 {
-        productTextField.text = "Sorry there are no available rides in your area"
+        if products.count == 0 {
+          productTextField.text = "Sorry there are no available rides in your area"
+        } else {
+          selectedProduct = products[0]
+        }
       }
     }
   }
@@ -91,6 +85,7 @@ class RequestViewController: UIViewController {
   var selectedProduct: JSON? {
     didSet {
       if let selectedProduct = selectedProduct {
+        productTextField.text = selectedProduct["display_name"].stringValue
         if let times = times {
           let id = selectedProduct["product_id"].stringValue
           for product in times {
@@ -122,9 +117,7 @@ class RequestViewController: UIViewController {
       DataManager.sharedInstance.timeEstimate(self.userLocation!.coordinate.latitude, longitude: self.userLocation!.coordinate.longitude) {
         result, error in
         if let result = result {
-          println("TIMES\(result)")
           if result["times"] != nil {
-            println("TIMESTIMESTIMES")
             self.times = result["times"].arrayValue
           }
         }
@@ -174,6 +167,9 @@ class RequestViewController: UIViewController {
                 } else {
                   self.mapView.camera = GMSCameraPosition(target: self.gmsmarker!.position, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
                 }
+              } else {
+                self.locationButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+                self.locationButton.setTitle("Provided location invalid. Please enter new location.", forState: .Normal)
               }
             }
           }
@@ -209,6 +205,14 @@ class RequestViewController: UIViewController {
     }
   }
   
+  @IBAction func presentAutocompleteOverlay(sender: UIButton) {
+    productTextField.resignFirstResponder()
+    let overlayView = AutocompleteOverlayView(frame: view.frame)
+    overlayView.delegate = self
+    overlayView.animateInto(view)
+    overlayView.tableController.userLocation = userLocation
+  }
+  
 }
 
 extension RequestViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -227,5 +231,34 @@ extension RequestViewController: UIPickerViewDataSource, UIPickerViewDelegate {
   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     productTextField.text = (products ?? [])[row]["display_name"].stringValue
     selectedProduct = (products ?? [])[row]
+  }
+}
+
+extension RequestViewController: AutocompleteOverlayViewDelegate {
+  
+  func overlay(overlay: AutocompleteOverlayView, selectedLocation location: String) {
+    overlay.animateOut()
+    locationButton.setTitle(location, forState: .Normal)
+    locationButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+    CLGeocoder().geocodeAddressString(location) { placemarks, error in
+      if let placemarks = placemarks as? [CLPlacemark] where !placemarks.isEmpty {
+        println(placemarks)
+        self.gmsmarker?.map = nil
+        self.gmsmarker = GMSMarker(position: placemarks[0].location.coordinate)
+        self.gmsmarker!.map = self.mapView
+        if let userLocation = self.userLocation {
+          let bounds = GMSCoordinateBounds(coordinate: self.gmsmarker!.position, coordinate: userLocation.coordinate)
+          self.mapView.camera = GMSCameraPosition(target: userLocation.coordinate, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
+          self.mapView.moveCamera(GMSCameraUpdate.fitBounds(bounds))
+          NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "both locations", object: nil))
+        } else {
+          self.mapView.camera = GMSCameraPosition(target: self.gmsmarker!.position, zoom: 14.0, bearing: 0.0, viewingAngle: 50.0)
+        }
+      }
+    }
+  }
+
+  func overlayDismissed(overlay: AutocompleteOverlayView) {
+    overlay.animateOut()
   }
 }

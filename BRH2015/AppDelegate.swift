@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       application.applicationIconBadgeNumber = 0
       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Request") as! RequestViewController
       vc.localNotif = localNotif
-      println(window)
-      println(window?.rootViewController)
-      window?.rootViewController?.presentViewController(vc, animated: false, completion: nil)
+      if let nav = window?.rootViewController as? UINavigationController {
+        nav.pushViewController(vc, animated: false)
+      }
     }
     
     return true
