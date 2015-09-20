@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -51,6 +51,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMy-IH-D0V">
                                 <rect key="frame" x="398" y="500" width="46" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -133,6 +134,7 @@
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="It2-t8-QbO">
                                                     <rect key="frame" x="529" y="26" width="53" height="53"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="It2-t8-QbO" secondAttribute="height" multiplier="1:1" id="fbS-Kj-q4f"/>
                                                     </constraints>
@@ -235,7 +237,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YE7-sA-4sx">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE7-sA-4sx">
                                 <rect key="frame" x="386" y="40" width="198" height="360"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rep-V2-4iK">
@@ -294,6 +296,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNh-vL-VAF">
+                                <rect key="frame" x="386" y="408" width="97" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="A11-Vi-MRX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -304,12 +315,14 @@
                             <constraint firstItem="luA-BG-AjA" firstAttribute="width" secondItem="waa-Ib-8Xx" secondAttribute="width" multiplier="0.6" id="9DL-EF-CCx"/>
                             <constraint firstItem="luA-BG-AjA" firstAttribute="top" secondItem="nvY-HC-xh2" secondAttribute="bottom" constant="10" id="IFE-88-MY6"/>
                             <constraint firstItem="iCd-Vb-xrW" firstAttribute="width" secondItem="waa-Ib-8Xx" secondAttribute="width" multiplier="0.6" id="P4m-82-c6h"/>
+                            <constraint firstItem="MNh-vL-VAF" firstAttribute="top" secondItem="YE7-sA-4sx" secondAttribute="bottom" constant="8" id="Trg-gh-4dL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YE7-sA-4sx" secondAttribute="trailing" id="UpN-1o-rMr"/>
                             <constraint firstItem="iCd-Vb-xrW" firstAttribute="top" secondItem="luA-BG-AjA" secondAttribute="bottom" constant="5" id="aLU-HG-ItP"/>
                             <constraint firstItem="YE7-sA-4sx" firstAttribute="centerY" secondItem="luA-BG-AjA" secondAttribute="centerY" id="eHZ-fP-8Nx"/>
                             <constraint firstItem="luA-BG-AjA" firstAttribute="height" secondItem="YE7-sA-4sx" secondAttribute="height" id="h1B-N9-87N"/>
                             <constraint firstItem="luA-BG-AjA" firstAttribute="top" secondItem="Urc-OT-XQX" secondAttribute="bottom" constant="20" id="jdv-Ab-TpQ"/>
                             <constraint firstAttribute="centerX" secondItem="nvY-HC-xh2" secondAttribute="centerX" id="lTB-cb-tyD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MNh-vL-VAF" secondAttribute="trailing" constant="101" id="v7d-j3-FHn"/>
                             <constraint firstItem="YE7-sA-4sx" firstAttribute="leading" secondItem="luA-BG-AjA" secondAttribute="trailing" id="xvf-d9-VNg"/>
                         </constraints>
                         <variation key="default">
@@ -319,8 +332,10 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="eventNameLabel" destination="nvY-HC-xh2" id="QM0-lD-sNe"/>
                         <outlet property="mapView" destination="luA-BG-AjA" id="6X5-DN-Hk0"/>
                         <outlet property="priceLabel" destination="Rep-V2-4iK" id="8df-wU-SgL"/>
+                        <outlet property="productTextField" destination="MNh-vL-VAF" id="knh-A9-ngY"/>
                         <outlet property="timeLabel" destination="F9X-Vp-2DM" id="qNy-fQ-3e3"/>
                     </connections>
                 </viewController>
